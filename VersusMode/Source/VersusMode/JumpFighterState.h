@@ -9,7 +9,7 @@
 /**
  * 
  */
-class VERSUSMODE_API JumpFighterState : public OnGroundFighterState, InAirFighterState
+class VERSUSMODE_API JumpFighterState : public OnGroundFighterState, public InAirFighterState
 {
 public:
 	void HandleInput(BaseFighter& fighter, BaseCommand& input) override;

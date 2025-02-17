@@ -2,7 +2,17 @@
 
 #pragma once
 
+#include "BaseCommand.h"
+#include "JumpCommand.h"
+#include "MoveCommand.h"
+#include "RunCommand.h"
+#include "SlideCommand.h"
+#include "SuperSlideCommand.h"
+#include "CrouchCommand.h"
+#include "FastFallCommand.h"
 #include "CoreMinimal.h"
+
+class BaseFighterState;
 
 /**
  * 
@@ -13,6 +23,9 @@ public:
 	BaseFighter();
 	virtual ~BaseFighter();
 protected:
+
+	BaseFighterState* currentState;
+
 	float jumpHeight;
 	int numberOfJumps;
 	float weight;

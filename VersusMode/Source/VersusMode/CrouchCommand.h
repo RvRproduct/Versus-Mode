@@ -2,14 +2,14 @@
 
 #pragma once
 
+#include "BaseCommand.h"
 #include "CoreMinimal.h"
 
 /**
  * 
  */
-class VERSUSMODE_API Command
+class VERSUSMODE_API CrouchCommand : public BaseCommand
 {
 public:
-	Command();
-	~Command();
+	void Execute() override;
 };
