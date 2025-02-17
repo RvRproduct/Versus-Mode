@@ -15,7 +15,7 @@ public:
 	BaseFighterState();
 	virtual ~BaseFighterState();
 
-	virtual void HandleInput(BaseFighter& fighter, BaseCommand input) = 0;
+	virtual void HandleInput(BaseFighter& fighter, BaseCommand& input) = 0;
 	virtual void Enter(BaseFighter& fighter) = 0;
 	virtual void Exit(BaseFighter& fighter) = 0;
 	virtual void Update(BaseFighter& fighter) = 0;

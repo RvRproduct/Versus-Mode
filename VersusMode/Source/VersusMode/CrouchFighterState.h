@@ -7,10 +7,9 @@
 /**
  * 
  */
-class VERSUSMODE_API BaseCommand
+class VERSUSMODE_API CrouchFighterState
 {
 public:
-	BaseCommand();
-	virtual ~BaseCommand();
-	virtual void Execute() = 0;
+	CrouchFighterState();
+	~CrouchFighterState();
 };

@@ -7,10 +7,9 @@
 /**
  * 
  */
-class VERSUSMODE_API BaseCommand
+class VERSUSMODE_API RunFighterState
 {
 public:
-	BaseCommand();
-	virtual ~BaseCommand();
-	virtual void Execute() = 0;
+	RunFighterState();
+	~RunFighterState();
 };
