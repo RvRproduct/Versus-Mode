@@ -3,10 +3,32 @@
 
 #include "CrouchFighterState.h"
 
-CrouchFighterState::CrouchFighterState()
+void CrouchFighterState::HandleInput(BaseFighter& fighter, BaseCommand& input)
 {
+
 }
 
-CrouchFighterState::~CrouchFighterState()
+void CrouchFighterState::Enter(BaseFighter& fighter)
 {
+
+}
+
+void CrouchFighterState::Exit(BaseFighter& fighter)
+{
+
+}
+
+void CrouchFighterState::Update(BaseFighter& fighter)
+{
+
+}
+
+void CrouchFighterState::PhysicsUpdate(BaseFighter& fighter)
+{
+
+}
+
+void CrouchFighterState::AnimationTriggerEvent(BaseFighter& fighter)
+{
+
 }

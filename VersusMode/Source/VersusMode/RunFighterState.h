@@ -2,14 +2,19 @@
 
 #pragma once
 
+#include "OnGroundFighterState.h"
 #include "CoreMinimal.h"
 
 /**
  * 
  */
-class VERSUSMODE_API RunFighterState
+class VERSUSMODE_API RunFighterState : public OnGroundFighterState
 {
 public:
-	RunFighterState();
-	~RunFighterState();
+	void HandleInput(BaseFighter& fighter, BaseCommand& input) override;
+	void Enter(BaseFighter& fighter) override;
+	void Exit(BaseFighter& fighter) override;
+	void Update(BaseFighter& fighter) override;
+	void PhysicsUpdate(BaseFighter& fighter) override;
+	void AnimationTriggerEvent(BaseFighter& fighter) override;
 };

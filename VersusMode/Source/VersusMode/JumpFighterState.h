@@ -2,14 +2,20 @@
 
 #pragma once
 
+#include "InAirFighterState.h"
+#include "OnGroundFighterState.h"
 #include "CoreMinimal.h"
 
 /**
  * 
  */
-class VERSUSMODE_API JumpFighterState
+class VERSUSMODE_API JumpFighterState : public OnGroundFighterState, InAirFighterState
 {
 public:
-	JumpFighterState();
-	~JumpFighterState();
+	void HandleInput(BaseFighter& fighter, BaseCommand& input) override;
+	void Enter(BaseFighter& fighter) override;
+	void Exit(BaseFighter& fighter) override;
+	void Update(BaseFighter& fighter) override;
+	void PhysicsUpdate(BaseFighter& fighter) override;
+	void AnimationTriggerEvent(BaseFighter& fighter) override;
 };

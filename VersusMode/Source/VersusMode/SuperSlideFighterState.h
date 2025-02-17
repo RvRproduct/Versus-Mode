@@ -2,13 +2,13 @@
 
 #pragma once
 
-#include "InAirFighterState.h"
+#include "OnGroundFighterState.h"
 #include "CoreMinimal.h"
 
 /**
  * 
  */
-class VERSUSMODE_API AirMoveFighterState : public InAirFighterState
+class VERSUSMODE_API SuperSlideFighterState : public OnGroundFighterState
 {
 public:
 	void HandleInput(BaseFighter& fighter, BaseCommand& input) override;

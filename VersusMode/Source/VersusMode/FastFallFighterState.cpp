@@ -3,10 +3,32 @@
 
 #include "FastFallFighterState.h"
 
-FastFallFighterState::FastFallFighterState()
+void FastFallFighterState::HandleInput(BaseFighter& fighter, BaseCommand& input)
 {
+
 }
 
-FastFallFighterState::~FastFallFighterState()
+void FastFallFighterState::Enter(BaseFighter& fighter)
 {
+
+}
+
+void FastFallFighterState::Exit(BaseFighter& fighter)
+{
+
+}
+
+void FastFallFighterState::Update(BaseFighter& fighter)
+{
+
+}
+
+void FastFallFighterState::PhysicsUpdate(BaseFighter& fighter)
+{
+
+}
+
+void FastFallFighterState::AnimationTriggerEvent(BaseFighter& fighter)
+{
+
 }

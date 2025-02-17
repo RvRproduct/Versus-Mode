@@ -3,10 +3,32 @@
 
 #include "JumpFighterState.h"
 
-JumpFighterState::JumpFighterState()
+void JumpFighterState::HandleInput(BaseFighter& fighter, BaseCommand& input)
 {
+
 }
 
-JumpFighterState::~JumpFighterState()
+void JumpFighterState::Enter(BaseFighter& fighter)
 {
+
+}
+
+void JumpFighterState::Exit(BaseFighter& fighter)
+{
+
+}
+
+void JumpFighterState::Update(BaseFighter& fighter)
+{
+
+}
+
+void JumpFighterState::PhysicsUpdate(BaseFighter& fighter)
+{
+
+}
+
+void JumpFighterState::AnimationTriggerEvent(BaseFighter& fighter)
+{
+
 }

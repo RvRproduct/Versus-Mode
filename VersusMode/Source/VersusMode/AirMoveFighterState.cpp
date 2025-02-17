@@ -3,10 +3,32 @@
 
 #include "AirMoveFighterState.h"
 
-AirMoveFighterState::AirMoveFighterState()
+void AirMoveFighterState::HandleInput(BaseFighter& fighter, BaseCommand& input)
 {
+
 }
 
-AirMoveFighterState::~AirMoveFighterState()
+void AirMoveFighterState::Enter(BaseFighter& fighter)
 {
+
+}
+
+void AirMoveFighterState::Exit(BaseFighter& fighter)
+{
+
+}
+
+void AirMoveFighterState::Update(BaseFighter& fighter)
+{
+
+}
+
+void AirMoveFighterState::PhysicsUpdate(BaseFighter& fighter)
+{
+
+}
+
+void AirMoveFighterState::AnimationTriggerEvent(BaseFighter& fighter)
+{
+
 }

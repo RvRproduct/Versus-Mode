@@ -3,10 +3,32 @@
 
 #include "RunFighterState.h"
 
-RunFighterState::RunFighterState()
+void RunFighterState::HandleInput(BaseFighter& fighter, BaseCommand& input)
 {
+
 }
 
-RunFighterState::~RunFighterState()
+void RunFighterState::Enter(BaseFighter& fighter)
 {
+
+}
+
+void RunFighterState::Exit(BaseFighter& fighter)
+{
+
+}
+
+void RunFighterState::Update(BaseFighter& fighter)
+{
+
+}
+
+void RunFighterState::PhysicsUpdate(BaseFighter& fighter)
+{
+
+}
+
+void RunFighterState::AnimationTriggerEvent(BaseFighter& fighter)
+{
+
 }
