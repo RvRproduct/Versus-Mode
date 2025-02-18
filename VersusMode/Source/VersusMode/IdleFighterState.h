@@ -2,13 +2,13 @@
 
 #pragma once
 
-#include "BaseFighterState.h"
+#include "OnGroundFighterState.h"
 #include "CoreMinimal.h"
 
 /**
  * 
  */
-class VERSUSMODE_API OnGroundFighterState : public BaseFighterState
+class VERSUSMODE_API IdleFighterState : public OnGroundFighterState
 {
 public:
 	void HandleInput(BaseFighter& fighter, BaseCommand& input) override;

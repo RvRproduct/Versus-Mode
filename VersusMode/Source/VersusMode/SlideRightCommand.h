@@ -8,7 +8,7 @@
 /**
  * 
  */
-class VERSUSMODE_API RunCommand : public BaseCommand
+class VERSUSMODE_API SlideRightCommand : public BaseCommand
 {
 public:
 	void Execute() override;

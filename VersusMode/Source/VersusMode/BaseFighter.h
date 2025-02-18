@@ -4,11 +4,16 @@
 
 #include "BaseCommand.h"
 #include "JumpCommand.h"
-#include "MoveCommand.h"
-#include "RunCommand.h"
-#include "SlideCommand.h"
-#include "SuperSlideCommand.h"
-#include "CrouchCommand.h"
+#include "MoveLeftCommand.h"
+#include "MoveRightCommand.h"
+#include "MoveUpCommand.h"
+#include "MoveDownCommand.h"
+#include "RunLeftCommand.h"
+#include "RunRightCommand.h"
+#include "SlideLeftCommand.h"
+#include "SlideRightCommand.h"
+#include "SuperSlideLeftCommand.h"
+#include "SuperSlideRightCommand.h"
 #include "FastFallCommand.h"
 #include "CoreMinimal.h"
 
@@ -23,6 +28,17 @@ public:
 	BaseFighter();
 	virtual ~BaseFighter();
 protected:
+	BaseCommand* wKey;
+	BaseCommand* sKey;
+	BaseCommand* aKey;
+	BaseCommand* dKey;
+	BaseCommand* spacebar;
+	BaseCommand* runLeft;
+	BaseCommand* runRight;
+	BaseCommand* slideLeft;
+	BaseCommand* slideRight;
+	BaseCommand* superSlideLeft;
+	BaseCommand* superSlideRight;
 
 	BaseFighterState* currentState;
 
@@ -32,6 +48,7 @@ protected:
 	float groundWalkSpeed;
 	float groundRunSpeed;
 	float groundSlideRate;
+	float groundSuperSlideMultiplier;
 	float airSpeed;
 	float gravity;
 	float meterAmount;

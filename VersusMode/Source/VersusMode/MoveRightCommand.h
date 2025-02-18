@@ -8,7 +8,7 @@
 /**
  * 
  */
-class VERSUSMODE_API MoveCommand : public BaseCommand
+class VERSUSMODE_API MoveRightCommand : public BaseCommand
 {
 public:
 	void Execute() override;

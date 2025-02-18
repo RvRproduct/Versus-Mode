@@ -8,7 +8,7 @@
 /**
  * 
  */
-class VERSUSMODE_API SuperSlideCommand : public BaseCommand
+class VERSUSMODE_API SuperSlideRightCommand : public BaseCommand
 {
 public:
 	void Execute() override;
