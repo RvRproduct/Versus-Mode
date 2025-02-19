@@ -2,22 +2,8 @@
 
 #pragma once
 
-#include "BaseCommand.h"
-#include "JumpCommand.h"
-#include "MoveLeftCommand.h"
-#include "MoveRightCommand.h"
-#include "MoveUpCommand.h"
-#include "MoveDownCommand.h"
-#include "RunLeftCommand.h"
-#include "RunRightCommand.h"
-#include "SlideLeftCommand.h"
-#include "SlideRightCommand.h"
-#include "SuperSlideLeftCommand.h"
-#include "SuperSlideRightCommand.h"
-#include "FastFallCommand.h"
-#include "CoreMinimal.h"
-
 class BaseFighterState;
+class BaseCommand;
 
 /**
  * 
@@ -32,9 +18,8 @@ protected:
 	BaseCommand* sKey;
 	BaseCommand* aKey;
 	BaseCommand* dKey;
+	BaseCommand* noKey;
 	BaseCommand* spacebar;
-	BaseCommand* runLeft;
-	BaseCommand* runRight;
 	BaseCommand* slideLeft;
 	BaseCommand* slideRight;
 	BaseCommand* superSlideLeft;
@@ -52,6 +37,28 @@ protected:
 	float airSpeed;
 	float gravity;
 	float meterAmount;
+
+	bool isFacingRight;
+	bool isRunning;
+
+public:
+	bool GetIsRunning()
+	{
+		return isRunning;
+	}
+
+	BaseFighterState* GetCurrentState()
+	{
+		return currentState;
+	}
+
+	void SetCurrentState(BaseFighterState* newState)
+	{
+		BaseFighterState* oldState = currentState;
+		currentState = newState;
+		delete oldState;
+	}
+
 protected:
 	virtual void SetStats() = 0;
 };

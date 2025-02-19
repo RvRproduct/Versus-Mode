@@ -3,7 +3,7 @@
 
 #include "JumpCommand.h"
 
-void JumpCommand::Execute()
+void JumpCommand::Execute(BaseFighter* fighter)
 {
 
 }

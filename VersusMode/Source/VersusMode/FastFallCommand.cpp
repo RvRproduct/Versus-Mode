@@ -3,7 +3,7 @@
 
 #include "FastFallCommand.h"
 
-void FastFallCommand::Execute()
+void FastFallCommand::Execute(BaseFighter* fighter)
 {
 
 }

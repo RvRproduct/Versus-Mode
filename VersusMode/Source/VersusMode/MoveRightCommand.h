@@ -11,5 +11,5 @@
 class VERSUSMODE_API MoveRightCommand : public BaseCommand
 {
 public:
-	void Execute() override;
+	void Execute(BaseFighter* fighter) override;
 };

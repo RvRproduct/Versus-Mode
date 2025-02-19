@@ -11,5 +11,5 @@
 class VERSUSMODE_API FastFallCommand : public BaseCommand
 {
 public:
-	void Execute() override;
+	void Execute(BaseFighter* fighter) override;
 };

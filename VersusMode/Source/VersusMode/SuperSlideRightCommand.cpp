@@ -3,7 +3,7 @@
 
 #include "SuperSlideRightCommand.h"
 
-void SuperSlideRightCommand::Execute()
+void SuperSlideRightCommand::Execute(BaseFighter* fighter)
 {
 
 }

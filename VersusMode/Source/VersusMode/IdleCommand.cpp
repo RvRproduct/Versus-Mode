@@ -3,7 +3,7 @@
 
 #include "IdleCommand.h"
 
-void IdleCommand::Execute()
+void IdleCommand::Execute(BaseFighter* fighter)
 {
 
 }

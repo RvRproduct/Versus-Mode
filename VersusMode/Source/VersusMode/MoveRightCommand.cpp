@@ -3,7 +3,7 @@
 
 #include "MoveRightCommand.h"
 
-void MoveRightCommand::Execute()
+void MoveRightCommand::Execute(BaseFighter* fighter)
 {
 
 }

@@ -8,8 +8,8 @@
 /**
  * 
  */
-class VERSUSMODE_API IdleCommand : BaseCommand
+class VERSUSMODE_API IdleCommand : public BaseCommand
 {
 public:
-	void Execute() override;
+	void Execute(BaseFighter* fighter) override;
 };

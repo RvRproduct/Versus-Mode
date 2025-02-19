@@ -12,6 +12,19 @@
 #include "SlideFighterState.h"
 #include "SuperSlideFighterState.h"
 
+#include "JumpCommand.h"
+#include "MoveLeftCommand.h"
+#include "MoveRightCommand.h"
+#include "MoveUpCommand.h"
+#include "MoveDownCommand.h"
+#include "IdleCommand.h"
+#include "SlideLeftCommand.h"
+#include "SlideRightCommand.h"
+#include "SuperSlideLeftCommand.h"
+#include "SuperSlideRightCommand.h"
+#include "FastFallCommand.h"
+#include "CoreMinimal.h"
+
 #include "TestFighter.h"
 
 // Sets default values
@@ -26,6 +39,8 @@ ATestFighter::ATestFighter()
 void ATestFighter::BeginPlay()
 {
 	Super::BeginPlay();
+
+	SetStats();
 	
 }
 
@@ -41,6 +56,23 @@ void ATestFighter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompone
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 
+	if (APlayerController* PlayerController = Cast<APlayerController>(Controller))
+	{
+		if (UEnhancedInputLocalPlayerSubsystem* Subsystem = ULocalPlayer::GetSubsystem<UEnhancedInputLocalPlayerSubsystem>(PlayerController->GetLocalPlayer()))
+		{
+			Subsystem->AddMappingContext(FighterInputMapping, 0);
+		}
+	}
+
+	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
+	{
+		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ATestFighter::FighterMove);
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ATestFighter::FighterJump);
+		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Triggered, this, &ATestFighter::FighterRun);
+		EnhancedInputComponent->BindAction(SlideAction, ETriggerEvent::Triggered, this, &ATestFighter::FighterSlide);
+		EnhancedInputComponent->BindAction(SuperSlideAction, ETriggerEvent::Triggered, this, &ATestFighter::FighterSuperSlide);
+	}
+
 }
 
 void ATestFighter::SetStats()
@@ -49,9 +81,8 @@ void ATestFighter::SetStats()
 	sKey = new MoveDownCommand();
 	aKey = new MoveLeftCommand();
 	dKey = new MoveRightCommand();
+	noKey = new IdleCommand();
 	spacebar = new JumpCommand();
-	runLeft = new RunLeftCommand();
-	runRight = new RunRightCommand();
 	slideLeft = new SlideLeftCommand();
 	slideRight = new SlideRightCommand();
 	superSlideLeft = new SuperSlideLeftCommand();
@@ -69,5 +100,71 @@ void ATestFighter::SetStats()
 	airSpeed = 250.0f;
 	gravity = 7.0f;
 	meterAmount = 9001.0f;
+}
+
+void ATestFighter::FighterMove(const FInputActionValue& Value)
+{
+	FVector movementInput = Value.Get<FVector>();
+
+	if (movementInput.X != 0 && movementInput.Y != 0)
+	{
+		if (movementInput.X < 0) // Left
+		{
+
+			aKey->Execute(this);
+		}
+		else if (movementInput.X > 0) // Right
+		{
+			dKey->Execute(this);
+		}
+
+		if (movementInput.Y > 0) // Up
+		{
+			wKey->Execute(this);
+		}
+		else if (movementInput.Y < 0) // Down
+		{
+			sKey->Execute(this);
+		}
+	}
+	else
+	{
+		noKey->Execute(this);
+	}
+	
+}
+
+void ATestFighter::FighterJump(const FInputActionValue& Value)
+{
+	bool jumpInput = Value.Get<bool>();
+
+	if (jumpInput)
+	{
+		spacebar->Execute(this);
+	}
+}
+
+void ATestFighter::FighterRun(const FInputActionValue& Value)
+{
+	bool runInput = Value.Get<bool>();
+
+	if (runInput)
+	{
+		isRunning = true;
+	}
+	else
+	{
+		isRunning = false;
+	}
+}
+
+void ATestFighter::FighterSlide(const FInputActionValue& Value)
+{
+
+}
+
+void ATestFighter::FighterSuperSlide(const FInputActionValue& Value)
+{
+
 }
 
