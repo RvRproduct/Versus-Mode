@@ -3,32 +3,42 @@
 
 #include "OnGroundFighterState.h"
 
-void OnGroundFighterState::HandleInput(BaseFighter& fighter, BaseCommand& input)
+void OnGroundFighterState::SetMovement(FVector movementDirection)
 {
 
 }
 
-void OnGroundFighterState::Enter(BaseFighter& fighter)
+bool OnGroundFighterState::IsA(const std::type_info& type)
+{
+	return type == typeid(OnGroundFighterState);
+}
+
+void OnGroundFighterState::HandleInput(ABaseFighterCharacter& fighter, BaseCommand& input)
 {
 
 }
 
-void OnGroundFighterState::Exit(BaseFighter& fighter)
+void OnGroundFighterState::Enter(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void OnGroundFighterState::Update(BaseFighter& fighter)
+void OnGroundFighterState::Exit(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void OnGroundFighterState::PhysicsUpdate(BaseFighter& fighter)
+void OnGroundFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 {
 
 }
 
-void OnGroundFighterState::AnimationTriggerEvent(BaseFighter& fighter)
+void OnGroundFighterState::PhysicsUpdate(ABaseFighterCharacter& fighter)
+{
+
+}
+
+void OnGroundFighterState::AnimationTriggerEvent(ABaseFighterCharacter& fighter)
 {
 
 }

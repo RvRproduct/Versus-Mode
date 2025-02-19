@@ -3,32 +3,37 @@
 
 #include "RunFighterState.h"
 
-void RunFighterState::HandleInput(BaseFighter& fighter, BaseCommand& input)
+void RunFighterState::SetMovement(FVector movementDirection)
 {
 
 }
 
-void RunFighterState::Enter(BaseFighter& fighter)
+void RunFighterState::HandleInput(ABaseFighterCharacter& fighter, BaseCommand& input)
 {
 
 }
 
-void RunFighterState::Exit(BaseFighter& fighter)
+void RunFighterState::Enter(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void RunFighterState::Update(BaseFighter& fighter)
+void RunFighterState::Exit(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void RunFighterState::PhysicsUpdate(BaseFighter& fighter)
+void RunFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 {
 
 }
 
-void RunFighterState::AnimationTriggerEvent(BaseFighter& fighter)
+void RunFighterState::PhysicsUpdate(ABaseFighterCharacter& fighter)
+{
+
+}
+
+void RunFighterState::AnimationTriggerEvent(ABaseFighterCharacter& fighter)
 {
 
 }

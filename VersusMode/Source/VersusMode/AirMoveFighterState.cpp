@@ -3,32 +3,37 @@
 
 #include "AirMoveFighterState.h"
 
-void AirMoveFighterState::HandleInput(BaseFighter& fighter, BaseCommand& input)
+void AirMoveFighterState::SetMovement(FVector movementDirection)
 {
 
 }
 
-void AirMoveFighterState::Enter(BaseFighter& fighter)
+void AirMoveFighterState::HandleInput(ABaseFighterCharacter& fighter, BaseCommand& input)
 {
 
 }
 
-void AirMoveFighterState::Exit(BaseFighter& fighter)
+void AirMoveFighterState::Enter(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void AirMoveFighterState::Update(BaseFighter& fighter)
+void AirMoveFighterState::Exit(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void AirMoveFighterState::PhysicsUpdate(BaseFighter& fighter)
+void AirMoveFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 {
 
 }
 
-void AirMoveFighterState::AnimationTriggerEvent(BaseFighter& fighter)
+void AirMoveFighterState::PhysicsUpdate(ABaseFighterCharacter& fighter)
+{
+
+}
+
+void AirMoveFighterState::AnimationTriggerEvent(ABaseFighterCharacter& fighter)
 {
 
 }

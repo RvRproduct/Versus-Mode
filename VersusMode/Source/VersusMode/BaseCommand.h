@@ -4,7 +4,7 @@
 
 #include "CoreMinimal.h"
 
-class BaseFighter;
+class ABaseFighterCharacter;
 
 /**
  * 
@@ -14,5 +14,5 @@ class VERSUSMODE_API BaseCommand
 public:
 	BaseCommand();
 	virtual ~BaseCommand();
-	virtual void Execute(BaseFighter* fighter) = 0;
+	virtual void Execute(ABaseFighterCharacter* fighter) = 0;
 };

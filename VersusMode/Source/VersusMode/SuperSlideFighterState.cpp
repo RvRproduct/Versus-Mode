@@ -3,32 +3,37 @@
 
 #include "SuperSlideFighterState.h"
 
-void SuperSlideFighterState::HandleInput(BaseFighter& fighter, BaseCommand& input)
+void SuperSlideFighterState::SetMovement(FVector movementDirection)
 {
 
 }
 
-void SuperSlideFighterState::Enter(BaseFighter& fighter)
+void SuperSlideFighterState::HandleInput(ABaseFighterCharacter& fighter, BaseCommand& input)
 {
 
 }
 
-void SuperSlideFighterState::Exit(BaseFighter& fighter)
+void SuperSlideFighterState::Enter(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void SuperSlideFighterState::Update(BaseFighter& fighter)
+void SuperSlideFighterState::Exit(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void SuperSlideFighterState::PhysicsUpdate(BaseFighter& fighter)
+void SuperSlideFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 {
 
 }
 
-void SuperSlideFighterState::AnimationTriggerEvent(BaseFighter& fighter)
+void SuperSlideFighterState::PhysicsUpdate(ABaseFighterCharacter& fighter)
+{
+
+}
+
+void SuperSlideFighterState::AnimationTriggerEvent(ABaseFighterCharacter& fighter)
 {
 
 }

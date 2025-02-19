@@ -2,13 +2,13 @@
 
 #pragma once
 
-#include "OnGroundFighterState.h"
+#include "InAirFighterState.h"
 #include "CoreMinimal.h"
 
 /**
  * 
  */
-class VERSUSMODE_API RunFighterState : public OnGroundFighterState
+class VERSUSMODE_API AirJumpFighterState : public InAirFighterState
 {
 public:
 	void SetMovement(FVector movementDirection) override;

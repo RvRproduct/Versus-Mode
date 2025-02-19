@@ -3,32 +3,42 @@
 
 #include "InAirFighterState.h"
 
-void InAirFighterState::HandleInput(BaseFighter& fighter, BaseCommand& input)
+void InAirFighterState::SetMovement(FVector movementDirection)
 {
 
 }
 
-void InAirFighterState::Enter(BaseFighter& fighter)
+bool InAirFighterState::IsA(const std::type_info& type)
+{
+	return type == typeid(InAirFighterState);
+}
+
+void InAirFighterState::HandleInput(ABaseFighterCharacter& fighter, BaseCommand& input)
 {
 
 }
 
-void InAirFighterState::Exit(BaseFighter& fighter)
+void InAirFighterState::Enter(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void InAirFighterState::Update(BaseFighter& fighter)
+void InAirFighterState::Exit(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void InAirFighterState::PhysicsUpdate(BaseFighter& fighter)
+void InAirFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 {
 
 }
 
-void InAirFighterState::AnimationTriggerEvent(BaseFighter& fighter)
+void InAirFighterState::PhysicsUpdate(ABaseFighterCharacter& fighter)
+{
+
+}
+
+void InAirFighterState::AnimationTriggerEvent(ABaseFighterCharacter& fighter)
 {
 
 }

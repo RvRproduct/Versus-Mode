@@ -3,32 +3,37 @@
 
 #include "IdleFighterState.h"
 
-void IdleFighterState::HandleInput(BaseFighter& fighter, BaseCommand& input)
+void IdleFighterState::SetMovement(FVector movementDirection)
 {
 
 }
 
-void IdleFighterState::Enter(BaseFighter& fighter)
+void IdleFighterState::HandleInput(ABaseFighterCharacter& fighter, BaseCommand& input)
 {
 
 }
 
-void IdleFighterState::Exit(BaseFighter& fighter)
+void IdleFighterState::Enter(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void IdleFighterState::Update(BaseFighter& fighter)
+void IdleFighterState::Exit(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void IdleFighterState::PhysicsUpdate(BaseFighter& fighter)
+void IdleFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 {
 
 }
 
-void IdleFighterState::AnimationTriggerEvent(BaseFighter& fighter)
+void IdleFighterState::PhysicsUpdate(ABaseFighterCharacter& fighter)
+{
+
+}
+
+void IdleFighterState::AnimationTriggerEvent(ABaseFighterCharacter& fighter)
 {
 
 }

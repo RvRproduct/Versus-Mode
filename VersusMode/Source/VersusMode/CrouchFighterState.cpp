@@ -3,32 +3,37 @@
 
 #include "CrouchFighterState.h"
 
-void CrouchFighterState::HandleInput(BaseFighter& fighter, BaseCommand& input)
+void CrouchFighterState::SetMovement(FVector movementDirection)
 {
 
 }
 
-void CrouchFighterState::Enter(BaseFighter& fighter)
+void CrouchFighterState::HandleInput(ABaseFighterCharacter& fighter, BaseCommand& input)
 {
 
 }
 
-void CrouchFighterState::Exit(BaseFighter& fighter)
+void CrouchFighterState::Enter(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void CrouchFighterState::Update(BaseFighter& fighter)
+void CrouchFighterState::Exit(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void CrouchFighterState::PhysicsUpdate(BaseFighter& fighter)
+void CrouchFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 {
 
 }
 
-void CrouchFighterState::AnimationTriggerEvent(BaseFighter& fighter)
+void CrouchFighterState::PhysicsUpdate(ABaseFighterCharacter& fighter)
+{
+
+}
+
+void CrouchFighterState::AnimationTriggerEvent(ABaseFighterCharacter& fighter)
 {
 
 }

@@ -2,7 +2,7 @@
 
 #pragma once
 
-#include "BaseFighter.h"
+#include "BaseFighterCharacter.h"
 #include "CoreMinimal.h"
 
 /**
@@ -11,13 +11,15 @@
 class VERSUSMODE_API BaseFighterState
 {
 public:
-	BaseFighterState();
-	virtual ~BaseFighterState();
+	BaseFighterState() = default;
+	virtual ~BaseFighterState() = default;
 
-	virtual void HandleInput(BaseFighter& fighter, BaseCommand& input) = 0;
-	virtual void Enter(BaseFighter& fighter) = 0;
-	virtual void Exit(BaseFighter& fighter) = 0;
-	virtual void Update(BaseFighter& fighter) = 0;
-	virtual void PhysicsUpdate(BaseFighter& fighter) = 0;
-	virtual void AnimationTriggerEvent(BaseFighter& fighter) = 0;
+	virtual bool IsA(const std::type_info& type) = 0;
+	virtual void SetMovement(FVector movementDirection) = 0;
+	virtual void HandleInput(ABaseFighterCharacter& fighter, BaseCommand& input) = 0;
+	virtual void Enter(ABaseFighterCharacter& fighter) = 0;
+	virtual void Exit(ABaseFighterCharacter& fighter) = 0;
+	virtual void Update(ABaseFighterCharacter& fighter, float DeltaTime) = 0;
+	virtual void PhysicsUpdate(ABaseFighterCharacter& fighter) = 0;
+	virtual void AnimationTriggerEvent(ABaseFighterCharacter& fighter) = 0;
 };

@@ -8,7 +8,7 @@
 /**
  * 
  */
-class VERSUSMODE_API RunFighterState : public OnGroundFighterState
+class VERSUSMODE_API GroundJumpFighterState : public OnGroundFighterState
 {
 public:
 	void SetMovement(FVector movementDirection) override;

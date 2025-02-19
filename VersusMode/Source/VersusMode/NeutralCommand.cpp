@@ -3,7 +3,7 @@
 
 #include "NeutralCommand.h"
 
-void NeutralCommand::Execute(BaseFighter* fighter)
+void NeutralCommand::Execute(ABaseFighterCharacter* fighter)
 {
 
 }

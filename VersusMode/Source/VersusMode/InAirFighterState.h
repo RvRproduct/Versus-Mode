@@ -11,10 +11,12 @@
 class VERSUSMODE_API InAirFighterState : public BaseFighterState
 {
 public:
-	void HandleInput(BaseFighter& fighter, BaseCommand& input) override;
-	void Enter(BaseFighter& fighter) override;
-	void Exit(BaseFighter& fighter) override;
-	void Update(BaseFighter& fighter) override;
-	void PhysicsUpdate(BaseFighter& fighter) override;
-	void AnimationTriggerEvent(BaseFighter& fighter) override;
+	void SetMovement(FVector movementDirection) override;
+	bool IsA(const std::type_info& type) override;
+	void HandleInput(ABaseFighterCharacter& fighter, BaseCommand& input) override;
+	void Enter(ABaseFighterCharacter& fighter) override;
+	void Exit(ABaseFighterCharacter& fighter) override;
+	void Update(ABaseFighterCharacter& fighter, float DeltaTime) override;
+	void PhysicsUpdate(ABaseFighterCharacter& fighter) override;
+	void AnimationTriggerEvent(ABaseFighterCharacter& fighter) override;
 };

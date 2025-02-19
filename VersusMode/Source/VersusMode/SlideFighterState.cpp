@@ -3,32 +3,37 @@
 
 #include "SlideFighterState.h"
 
-void SlideFighterState::HandleInput(BaseFighter& fighter, BaseCommand& input)
+void SlideFighterState::SetMovement(FVector movementDirection)
 {
 
 }
 
-void SlideFighterState::Enter(BaseFighter& fighter)
+void SlideFighterState::HandleInput(ABaseFighterCharacter& fighter, BaseCommand& input)
 {
 
 }
 
-void SlideFighterState::Exit(BaseFighter& fighter)
+void SlideFighterState::Enter(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void SlideFighterState::Update(BaseFighter& fighter)
+void SlideFighterState::Exit(ABaseFighterCharacter& fighter)
 {
 
 }
 
-void SlideFighterState::PhysicsUpdate(BaseFighter& fighter)
+void SlideFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 {
 
 }
 
-void SlideFighterState::AnimationTriggerEvent(BaseFighter& fighter)
+void SlideFighterState::PhysicsUpdate(ABaseFighterCharacter& fighter)
+{
+
+}
+
+void SlideFighterState::AnimationTriggerEvent(ABaseFighterCharacter& fighter)
 {
 
 }

@@ -1,5 +1,10 @@
 // By Roberto Valentino Reynoso (RvRproduct)
 
+// Current Command
+#include "MoveLeftCommand.h"
+
+#include "Kismet/GameplayStatics.h"
+
 // Fighter
 #include "BaseFighter.h"
 
@@ -8,24 +13,42 @@
 #include "WalkFighterState.h"
 #include "AirMoveFighterState.h"
 
-// Current Command
-#include "MoveLeftCommand.h"
-
-class OnGroundFighterState;
-class InAirFighterState;
-
-void MoveLeftCommand::Execute(BaseFighter* fighter)
+void MoveLeftCommand::Execute(ABaseFighterCharacter* fighter)
 {
-	if (dynamic_cast<OnGroundFighterState*>(fighter->GetCurrentState()) && fighter->GetIsRunning())
+	if (fighter->GetCurrentState()->IsA(typeid(OnGroundFighterState)))
 	{
-		fighter->SetCurrentState(new RunFighterState());
+		if (fighter->GetIsRunning())
+		{
+			fighter->GetCurrentState()->Exit(*fighter);
+			fighter->SetIsFacingRight(false);
+			fighter->SetCurrentState(new RunFighterState());
+			fighter->GetCurrentState()->Enter(*fighter);
+		}
+		else
+		{
+
+			if (GEngine)
+			{
+				GEngine->AddOnScreenDebugMessage(
+					-1,
+					5.f,
+					FColor::Yellow,
+					FString::Printf(TEXT("Trying to move left"))
+				);
+			}
+
+			fighter->GetCurrentState()->Exit(*fighter);
+			fighter->SetIsFacingRight(false);
+			fighter->SetCurrentState(new WalkFighterState());
+			fighter->GetCurrentState()->SetMovement(FVector(-1.0f, 0.0f, 0.0f));
+			fighter->GetCurrentState()->Enter(*fighter);
+		}
+		
 	}
-	else if (dynamic_cast<OnGroundFighterState*>(fighter->GetCurrentState()))
+	else if (fighter->GetCurrentState()->IsA(typeid(InAirFighterState)))
 	{
-		fighter->SetCurrentState(new WalkFighterState());
-	}
-	else if (dynamic_cast<InAirFighterState*>(fighter->GetCurrentState()))
-	{
+		fighter->GetCurrentState()->Exit(*fighter);
 		fighter->SetCurrentState(new AirMoveFighterState());
+		fighter->GetCurrentState()->Enter(*fighter);
 	}
 }

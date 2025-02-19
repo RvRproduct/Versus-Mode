@@ -11,5 +11,5 @@
 class VERSUSMODE_API JumpCommand : public BaseCommand
 {
 public:
-	void Execute(BaseFighter* fighter) override;
+	void Execute(ABaseFighterCharacter* fighter) override;
 };

@@ -28,8 +28,9 @@ protected:
 	BaseFighterState* currentState;
 
 	float jumpHeight;
-	int numberOfJumps;
+	int maxNumberOfJumps;
 	float weight;
+	FVector currentFighterVelocity;
 	float groundWalkSpeed;
 	float groundRunSpeed;
 	float groundSlideRate;
@@ -38,26 +39,33 @@ protected:
 	float gravity;
 	float meterAmount;
 
+	int currentNumberOfJumps;
 	bool isFacingRight;
+	bool isFastFalling;
 	bool isRunning;
 
 public:
-	bool GetIsRunning()
-	{
-		return isRunning;
-	}
+	bool GetIsRunning();
 
-	BaseFighterState* GetCurrentState()
-	{
-		return currentState;
-	}
+	bool GetIsFacingRight();
 
-	void SetCurrentState(BaseFighterState* newState)
-	{
-		BaseFighterState* oldState = currentState;
-		currentState = newState;
-		delete oldState;
-	}
+	void SetIsFacingRight(bool facingRight);
+
+	bool GetIsFastFalling();
+
+	void SetIsFastFalling(bool fastFalling);
+
+	float GetGroundWalkSpeed();
+
+	float GetJumpHeight();
+
+	FVector GetCurrentFighterVelocity();
+
+	void SetCurrentFighterVelocity(FVector newFighterVelocity);
+
+	BaseFighterState* GetCurrentState();
+
+	void SetCurrentState(BaseFighterState* newState);
 
 protected:
 	virtual void SetStats() = 0;

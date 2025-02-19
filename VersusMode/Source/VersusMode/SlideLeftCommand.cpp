@@ -3,7 +3,7 @@
 
 #include "SlideLeftCommand.h"
 
-void SlideLeftCommand::Execute(BaseFighter* fighter)
+void SlideLeftCommand::Execute(ABaseFighterCharacter* fighter)
 {
 
 }
