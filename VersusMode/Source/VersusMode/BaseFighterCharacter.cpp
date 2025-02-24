@@ -1,9 +1,12 @@
 // By Roberto Valentino Reynoso (RvRproduct)
 
+// Main Header
 #include "BaseFighterCharacter.h"
 
+// Other
 #include "Kismet/GameplayStatics.h"
 
+// Fighter States
 #include "OnGroundFighterState.h"
 #include "InAirFighterState.h"
 #include "IdleFighterState.h"
@@ -17,6 +20,7 @@
 #include "SlideFighterState.h"
 #include "SuperSlideFighterState.h"
 
+// Fighter Commands
 #include "JumpCommand.h"
 #include "MoveLeftCommand.h"
 #include "MoveRightCommand.h"
