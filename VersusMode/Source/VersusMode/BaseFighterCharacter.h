@@ -8,6 +8,7 @@
 #include "BaseFighter.h"
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
+#include "FighterManager.h"
 #include "BaseFighterCharacter.generated.h"
 
 UCLASS()
@@ -18,6 +19,8 @@ class VERSUSMODE_API ABaseFighterCharacter : public ACharacter, public BaseFight
 public:
 	// Sets default values for this character's properties
 	ABaseFighterCharacter();
+
+	AFighterManager* fighterManager;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Fighter Input Mapping")
 	class UInputMappingContext* FighterInputMapping;
@@ -56,4 +59,5 @@ public:
 	void FighterSlide(const FInputActionValue& Value);
 	void FighterSuperSlide(const FInputActionValue& Value);
 
+	void CheckIsOnGround(ABaseFighterCharacter* fighter);
 };

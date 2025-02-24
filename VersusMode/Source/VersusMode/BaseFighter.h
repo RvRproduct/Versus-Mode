@@ -27,6 +27,9 @@ protected:
 
 	BaseFighterState* currentState;
 
+	float fighterCapsuleRadius;
+	float fighterCapsuleHalfHeight;
+	FCollisionShape cachedFighterCapsuleShape;
 	float jumpHeight;
 	int maxNumberOfJumps;
 	float weight;
@@ -40,11 +43,22 @@ protected:
 	float meterAmount;
 
 	int currentNumberOfJumps;
+	bool isOnGround;
 	bool isFacingRight;
 	bool isFastFalling;
 	bool isRunning;
 
 public:
+	float GetFighterCapsuleRadius();
+
+	float GetFighterCapsuleHalfHeight();
+
+	FCollisionShape GetCachedFighterCapsuleShape();
+
+	bool GetIsOnGround();
+
+	void SetIsOnGround(bool isGrounded);
+
 	bool GetIsRunning();
 
 	bool GetIsFacingRight();

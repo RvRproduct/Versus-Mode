@@ -2,6 +2,8 @@
 
 #include "TestFighter.h"
 
+#include "Components/CapsuleComponent.h"
+
 #include "OnGroundFighterState.h"
 #include "InAirFighterState.h"
 #include "IdleFighterState.h"
@@ -42,6 +44,9 @@ void ATestFighter::SetStats()
 
 	currentState = new OnGroundFighterState();
 
+	fighterCapsuleRadius = GetCapsuleComponent()->GetUnscaledCapsuleRadius();
+	fighterCapsuleHalfHeight = GetCapsuleComponent()->GetUnscaledCapsuleHalfHeight();
+	cachedFighterCapsuleShape = FCollisionShape::MakeCapsule(fighterCapsuleRadius, fighterCapsuleHalfHeight);
 	jumpHeight = 500.0f;
 	maxNumberOfJumps = 8;
 	currentNumberOfJumps = maxNumberOfJumps;

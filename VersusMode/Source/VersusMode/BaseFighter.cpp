@@ -12,6 +12,31 @@ BaseFighter::~BaseFighter()
 {
 }
 
+float BaseFighter::GetFighterCapsuleRadius()
+{
+	return fighterCapsuleRadius;
+}
+
+float BaseFighter::GetFighterCapsuleHalfHeight()
+{
+	return fighterCapsuleHalfHeight;
+}
+
+FCollisionShape BaseFighter::GetCachedFighterCapsuleShape()
+{
+	return cachedFighterCapsuleShape;
+}
+
+bool BaseFighter::GetIsOnGround()
+{
+	return isOnGround;
+}
+
+void BaseFighter::SetIsOnGround(bool isGrounded)
+{
+	isOnGround = isGrounded;
+}
+
 bool BaseFighter::GetIsRunning()
 {
 	return isRunning;

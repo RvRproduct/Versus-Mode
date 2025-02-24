@@ -41,6 +41,16 @@ void ABaseFighterCharacter::BeginPlay()
 {
 	Super::BeginPlay();
 
+	fighterManager = AFighterManager::GetInstance(GetWorld());
+	if (fighterManager)
+	{
+		fighterManager->RegisterFighter(this);
+	}
+	else
+	{
+		UE_LOG(LogTemp, Error, TEXT("FighterManager is missing in the world"));
+	}
+
 	SetStats();
 }
 
@@ -166,5 +176,24 @@ void ABaseFighterCharacter::FighterSlide(const FInputActionValue& Value)
 void ABaseFighterCharacter::FighterSuperSlide(const FInputActionValue& Value)
 {
 
+}
+
+void ABaseFighterCharacter::CheckIsOnGround(ABaseFighterCharacter* fighter)
+{
+	FHitResult hitResult;
+	FVector start = fighter->GetActorLocation();
+	FVector end = start - FVector(0, 0, 10);
+
+	fighter->SetIsOnGround(
+		GetWorld()->SweepSingleByChannel(
+			hitResult,
+			start,
+			end,
+			FQuat::Identity,
+			ECC_Pawn,
+			fighter->cachedFighterCapsuleShape,
+			fighterManager->cachedQueryParams
+		)
+	);
 }
 
