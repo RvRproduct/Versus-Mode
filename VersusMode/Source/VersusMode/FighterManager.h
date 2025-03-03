@@ -15,24 +15,16 @@ public:
 	// Sets default values for this actor's properties
 	AFighterManager();
 
-	static AFighterManager* GetInstance(UWorld* world);
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Fighter")
+	AActor* playerFighter;
+
 	TArray<AActor*> fighters;
 	FCollisionQueryParams cachedQueryParams;
 
 	void RegisterFighter(AActor* fighter);
 	void UnregisterFighter(AActor* fighter);
 
-protected:
-	// Called when the game starts or when spawned
-	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
-
 private:
-	static AFighterManager* Instance;
-
 	void UpdateQueryParams();
 
 };
