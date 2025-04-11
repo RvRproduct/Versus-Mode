@@ -29,7 +29,12 @@ protected:
 	BaseCommand* aKey;
 	BaseCommand* dKey;
 	BaseCommand* noKey;
+	BaseCommand* uKey;
+	BaseCommand* iKey;
+	BaseCommand* oKey;
+	BaseCommand* pKey;
 	BaseCommand* spacebar;
+	BaseCommand* shift;
 	BaseCommand* slideLeft;
 	BaseCommand* slideRight;
 	BaseCommand* superSlideLeft;

@@ -12,6 +12,15 @@ void JumpCommand::Execute(ABaseFighterCharacter* fighter)
 	if (fighter->GetCurrentState()->IsA(typeid(OnGroundFighterState)))
 	{
 		fighter->GetCurrentState()->Exit(*fighter);
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(
+				-1,
+				5.f,
+				FColor::Yellow,
+				FString::Printf(TEXT("Trying to Jump"))
+			);
+		}
 		fighter->SetCurrentState(new GroundJumpFighterState());
 		fighter->GetCurrentState()->Enter(*fighter);
 	}

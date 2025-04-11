@@ -43,6 +43,10 @@ void GroundJumpFighterState::Update(ABaseFighterCharacter& fighter, float DeltaT
 		}
 
 	}
+	else if (fighter.GetFighterType() == FighterTypes::Playable)
+	{
+		fighter.LaunchCharacter(FVector(0, 0, fighter.GetJumpHeight()), true, true);
+	}
 }
 
 void GroundJumpFighterState::PhysicsUpdate(ABaseFighterCharacter& fighter)
