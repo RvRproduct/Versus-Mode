@@ -22,6 +22,7 @@ void MoveLeftCommand::Execute(ABaseFighterCharacter* fighter)
 			fighter->GetCurrentState()->Exit(*fighter);
 			fighter->SetIsFacingRight(false);
 			fighter->SetCurrentState(new RunFighterState());
+			fighter->GetCurrentState()->SetMovement(FVector(-1.0f, 0.0f, 0.0f));
 			fighter->GetCurrentState()->Enter(*fighter);
 		}
 		else

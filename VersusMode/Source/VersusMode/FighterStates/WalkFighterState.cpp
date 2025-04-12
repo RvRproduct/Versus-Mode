@@ -2,6 +2,7 @@
 
 
 #include "WalkFighterState.h"
+#include "RunFighterState.h"
 
 #include "Kismet/GameplayStatics.h"
 
@@ -21,29 +22,10 @@ void WalkFighterState::Enter(ABaseFighterCharacter& fighter)
 
 	if (fighter.GetIsFacingRight() == false && !currentRotation.Equals(FRotator(0.0f, 180.0f, 0.0f), 0.01f)) // If Moving Left
 	{
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(
-				-1,
-				5.f,
-				FColor::Yellow,
-				FString::Printf(TEXT("Trying to rotate left"))
-			);
-		}
 		fighter.SetActorRotation(FRotator(0.0f, 180.0f, 0.0f));
 	}
 	else if (fighter.GetIsFacingRight() == true && !currentRotation.Equals(FRotator(0.0f, 0.0f, 0.0f), 0.01f)) // If Moving Right
 	{
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(
-				-1,
-				5.f,
-				FColor::Yellow,
-				FString::Printf(TEXT("Trying to rotate right"))
-			);
-		}
-
 		fighter.SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
 	}
 }
@@ -64,9 +46,27 @@ void WalkFighterState::Exit(ABaseFighterCharacter& fighter)
 
 void WalkFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 {
-	FVector fighterMoveDirection = currentFighterMovement.GetSafeNormal();
-	fighter.GetCharacterMovement()->MaxWalkSpeed = fighter.GetGroundWalkSpeed();
-	fighter.AddMovementInput(fighterMoveDirection);
+	if (!fighter.GetIsRunning())
+	{
+		FVector fighterMoveDirection = currentFighterMovement.GetSafeNormal();
+		fighter.GetCharacterMovement()->MaxWalkSpeed = fighter.GetGroundWalkSpeed();
+		fighter.AddMovementInput(fighterMoveDirection);
+	}
+	else
+	{
+		Exit(fighter);
+		fighter.SetCurrentState(new RunFighterState());
+		if (fighter.GetIsFacingRight())
+		{
+			fighter.GetCurrentState()->SetMovement(FVector(1.0f, 0.0f, 0.0f));
+		}
+		else
+		{
+			fighter.GetCurrentState()->SetMovement(FVector(-1.0f, 0.0f, 0.0f));
+		}
+		fighter.GetCurrentState()->Enter(fighter);
+	}
+	
 }
 
 void WalkFighterState::PhysicsUpdate(ABaseFighterCharacter& fighter)

@@ -105,12 +105,29 @@ void ABaseFighterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 
 	if (UEnhancedInputComponent* EnhancedInputComponent = Cast<UEnhancedInputComponent>(PlayerInputComponent))
 	{
-		EnhancedInputComponent->BindAction(MoveAction, ETriggerEvent::Triggered, this, &ABaseFighterCharacter::FighterMove);
-		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Triggered, this, &ABaseFighterCharacter::FighterJump);
-		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Triggered, this, &ABaseFighterCharacter::FighterRun);
-		EnhancedInputComponent->BindAction(SlideAction, ETriggerEvent::Triggered, this, &ABaseFighterCharacter::FighterSlide);
-		EnhancedInputComponent->BindAction(SuperSlideAction, ETriggerEvent::Triggered, this, &ABaseFighterCharacter::FighterSuperSlide);
-		EnhancedInputComponent->BindAction(SwitchLevelAction, ETriggerEvent::Triggered, this, &ABaseFighterCharacter::FighterSwitchLevel);
+		EnhancedInputComponent->BindAction(MoveActionUp, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterMoveUpPressed);
+		EnhancedInputComponent->BindAction(MoveActionUp, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterMoveUpReleased);
+
+		EnhancedInputComponent->BindAction(MoveActionDown, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterMoveDownPressed);
+		EnhancedInputComponent->BindAction(MoveActionDown, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterMoveDownReleased);
+
+		EnhancedInputComponent->BindAction(MoveActionLeft, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterMoveLeftPressed);
+		EnhancedInputComponent->BindAction(MoveActionLeft, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterMoveLeftReleased);
+
+		EnhancedInputComponent->BindAction(MoveActionRight, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterMoveRightPressed);
+		EnhancedInputComponent->BindAction(MoveActionRight, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterMoveRightReleased);
+
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterJumpPressed);
+		EnhancedInputComponent->BindAction(JumpAction, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterJumpReleased);
+
+		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterRunPressed);
+		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterRunReleased);
+
+		EnhancedInputComponent->BindAction(SlideAction, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterSlide);
+		EnhancedInputComponent->BindAction(SlideAction, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterSlide);
+
+		EnhancedInputComponent->BindAction(SuperSlideAction, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterSuperSlide);
+		EnhancedInputComponent->BindAction(SwitchLevelAction, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterSwitchLevel);
 	}
 }
 
@@ -119,85 +136,170 @@ void ABaseFighterCharacter::SetStats()
 	// Implemented in Children
 }
 
-void ABaseFighterCharacter::FighterMove(const FInputActionValue& Value)
+void ABaseFighterCharacter::FighterMoveUpPressed(const FInputActionInstance& Instance)
 {
 	if (fighterType != FighterTypes::Playable) { return; }
 
-	FVector movementInput = Value.Get<FVector>();
-
-	if (GEngine)
+	if (!GetIsMoveDown())
 	{
-		GEngine->AddOnScreenDebugMessage(
-			-1,
-			5.f,
-			FColor::Yellow,
-			FString::Printf(TEXT("Hit Move Key"))
-		);
-	}
-
-	if (movementInput.X != 0 || movementInput.Y != 0)
-	{
-		if (movementInput.X < 0) // Left
-		{
-			aKey->Execute(this);
-		}
-		else if (movementInput.X > 0) // Right
-		{
-			
-			dKey->Execute(this);
-		}
-
-		if (movementInput.Y > 0) // Up
-		{
-			wKey->Execute(this);
-		}
-		else if (movementInput.Y < 0) // Down
-		{
-			sKey->Execute(this);
-		}
+		SetIsMoveUp(true);
+		wKey->Execute(this);
 	}
 	else
 	{
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(
-				-1,
-				5.f,
-				FColor::Yellow,
-				FString::Printf(TEXT("Trying to go to idle"))
-			);
-		}
+		SetIsMoveUp(true);
+	}
+}
+
+void ABaseFighterCharacter::FighterMoveDownPressed(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	if (!GetIsMoveUp())
+	{
+		SetIsMoveDown(true);
+		sKey->Execute(this);
+	}
+	else
+	{
+		SetIsMoveDown(true);
+	}
+}
+
+void ABaseFighterCharacter::FighterMoveLeftPressed(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	if (!GetIsMoveRight())
+	{
+		SetIsMoveLeft(true);
+		aKey->Execute(this);
+	}
+	else
+	{
+		SetIsMoveLeft(true);
 		noKey->Execute(this);
 	}
-
 }
 
-void ABaseFighterCharacter::FighterJump(const FInputActionValue& Value)
+void ABaseFighterCharacter::FighterMoveRightPressed(const FInputActionInstance& Instance)
 {
 	if (fighterType != FighterTypes::Playable) { return; }
 
-	bool jumpInput = Value.Get<bool>();
-
-	if (jumpInput)
+	if (!GetIsMoveLeft())
 	{
-		spacebar->Execute(this);
-	}
-}
-
-void ABaseFighterCharacter::FighterRun(const FInputActionValue& Value)
-{
-	if (fighterType != FighterTypes::Playable) { return; }
-
-	bool runInput = Value.Get<bool>();
-
-	if (runInput)
-	{
-		isRunning = true;
+		SetIsMoveRight(true);
+		dKey->Execute(this);
 	}
 	else
 	{
-		isRunning = false;
+		SetIsMoveRight(true);
+		noKey->Execute(this);
 	}
+}
+
+void ABaseFighterCharacter::FighterMoveUpReleased(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	if (GetIsMoveDown())
+	{
+		SetIsMoveUp(false);
+		sKey->Execute(this);
+	}
+	else
+	{
+		SetIsMoveUp(false);
+		CheckIfNoMovementKey();
+	}
+
+}
+
+void ABaseFighterCharacter::FighterMoveDownReleased(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	if (GetIsMoveUp())
+	{
+		SetIsMoveDown(false);
+		wKey->Execute(this);
+	}
+	else
+	{
+		SetIsMoveDown(false);
+		CheckIfNoMovementKey();
+	}
+
+}
+
+void ABaseFighterCharacter::FighterMoveLeftReleased(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	if (GetIsMoveRight())
+	{
+		SetIsMoveLeft(false);
+		dKey->Execute(this);
+	}
+	else
+	{
+		SetIsMoveLeft(false);
+		CheckIfNoMovementKey();
+	}
+
+}
+
+void ABaseFighterCharacter::FighterMoveRightReleased(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	if (GetIsMoveLeft())
+	{
+		SetIsMoveRight(false);
+		aKey->Execute(this);
+	}
+	else
+	{
+		SetIsMoveRight(false);
+		CheckIfNoMovementKey();
+	}
+
+}
+
+void ABaseFighterCharacter::CheckIfNoMovementKey()
+{
+	if (!GetIsMoveUp() && !GetIsMoveDown() && !GetIsMoveLeft() && !GetIsMoveRight())
+	{
+		noKey->Execute(this);
+	}
+}
+
+void ABaseFighterCharacter::FighterJumpPressed(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	spacebar->Execute(this);
+}
+
+void ABaseFighterCharacter::FighterJumpReleased(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	noKey->Execute(this);
+}
+
+void ABaseFighterCharacter::FighterRunPressed(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	isRunning = true;
+}
+
+void ABaseFighterCharacter::FighterRunReleased(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	isRunning = false;
 }
 
 void ABaseFighterCharacter::FighterSlide(const FInputActionValue& Value)

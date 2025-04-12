@@ -97,6 +97,11 @@ float BaseFighter::GetGroundWalkSpeed()
 	return groundWalkSpeed;
 }
 
+float BaseFighter::GetGroundRunSpeed()
+{
+	return groundRunSpeed;
+}
+
 float BaseFighter::GetBreathRate()
 {
 	return breathRate;
@@ -125,6 +130,46 @@ void BaseFighter::SetCurrentFighterVelocity(FVector newFighterVelocity)
 float BaseFighter::GetJumpHeight()
 {
 	return jumpHeight;
+}
+
+void BaseFighter::SetIsMoveUp(bool _isMoveUp)
+{
+	isMoveUp = _isMoveUp;
+}
+
+bool BaseFighter::GetIsMoveUp()
+{
+	return isMoveUp;
+}
+
+void BaseFighter::SetIsMoveDown(bool _isMoveDown)
+{
+	isMoveDown = _isMoveDown;
+}
+
+bool BaseFighter::GetIsMoveDown()
+{
+	return isMoveDown;
+}
+
+void BaseFighter::SetIsMoveLeft(bool _isMoveLeft)
+{
+	isMoveLeft = _isMoveLeft;
+}
+
+bool BaseFighter::GetIsMoveLeft()
+{
+	return isMoveLeft;
+}
+
+void BaseFighter::SetIsMoveRight(bool _isMoveRight)
+{
+	isMoveRight = _isMoveRight;
+}
+
+bool BaseFighter::GetIsMoveRight()
+{
+	return isMoveRight;
 }
 
 BaseFighterState* BaseFighter::GetCurrentState()

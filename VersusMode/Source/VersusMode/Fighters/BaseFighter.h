@@ -70,6 +70,11 @@ protected:
 	bool isRunning;
 	bool isBreathingDown;
 
+	bool isMoveUp;
+	bool isMoveDown;
+	bool isMoveLeft;
+	bool isMoveRight;
+
 public:
 	float GetFighterCapsuleRadius();
 
@@ -111,7 +116,25 @@ public:
 
 	float GetGroundWalkSpeed();
 
+	float GetGroundRunSpeed();
+
 	float GetJumpHeight();
+
+	void SetIsMoveUp(bool _isMoveUp);
+
+	bool GetIsMoveUp();
+
+	void SetIsMoveDown(bool _isMoveDown);
+
+	bool GetIsMoveDown();
+
+	void SetIsMoveLeft(bool _isMoveLeft);
+
+	bool GetIsMoveLeft();
+
+	void SetIsMoveRight(bool _isMoveRight);
+
+	bool GetIsMoveRight();
 
 	FVector GetCurrentFighterVelocity();
 

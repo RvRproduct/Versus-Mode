@@ -30,7 +30,16 @@ public:
 	class UInputMappingContext* FighterInputMapping;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
-	TObjectPtr<UInputAction> MoveAction;
+	TObjectPtr<UInputAction> MoveActionUp;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> MoveActionDown;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> MoveActionLeft;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> MoveActionRight;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> JumpAction;
@@ -60,12 +69,27 @@ public:
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
-	void FighterMove(const FInputActionValue& Value);
-	void FighterJump(const FInputActionValue& Value);
-	void FighterRun(const FInputActionValue& Value);
+	void FighterMoveUpPressed(const FInputActionInstance& Instance);
+	void FighterMoveDownPressed(const FInputActionInstance& Instance);
+	void FighterMoveLeftPressed(const FInputActionInstance& Instance);
+	void FighterMoveRightPressed(const FInputActionInstance& Instance);
+
+	void FighterMoveUpReleased(const FInputActionInstance& Instance);
+	void FighterMoveDownReleased(const FInputActionInstance& Instance);
+	void FighterMoveLeftReleased(const FInputActionInstance& Instance);
+	void FighterMoveRightReleased(const FInputActionInstance& Instance);
+
+	void FighterJumpPressed(const FInputActionInstance& Instance);
+	void FighterJumpReleased(const FInputActionInstance& Instance);
+
+	void FighterRunPressed(const FInputActionInstance& Instance);
+	void FighterRunReleased(const FInputActionInstance& Instance);
+
+
 	void FighterSlide(const FInputActionValue& Value);
 	void FighterSuperSlide(const FInputActionValue& Value);
 	void FighterSwitchLevel(const FInputActionValue& Value);
 
+	void CheckIfNoMovementKey();
 	void CheckIsOnGround(ABaseFighterCharacter* fighter);
 };

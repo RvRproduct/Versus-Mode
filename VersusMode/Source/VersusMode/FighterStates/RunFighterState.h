@@ -11,6 +11,8 @@
 class VERSUSMODE_API RunFighterState : public OnGroundFighterState
 {
 public:
+	FVector currentFighterMovement = FVector::Zero();
+
 	void SetMovement(FVector movementDirection) override;
 	void HandleInput(ABaseFighterCharacter& fighter, BaseCommand& input) override;
 	void Enter(ABaseFighterCharacter& fighter) override;

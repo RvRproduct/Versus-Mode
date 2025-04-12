@@ -65,9 +65,13 @@ void ATestFighter::SetStats()
 	currentNumberOfJumps = maxNumberOfJumps;
 	weight = 4000.0f;
 	groundWalkSpeed = 400.0f;
-	groundRunSpeed = 1.0f;
+	groundRunSpeed = 800.0f;
 	groundSlideRate = 40.0f;
 	isOnGround = true;
+	isMoveUp = false;
+	isMoveDown = false;
+	isMoveLeft = false;
+	isMoveRight = false;
 	groundSuperSlideMultiplier = 1.5f;
 	airSpeed = 250.0f;
 	gravity = 7.0f;

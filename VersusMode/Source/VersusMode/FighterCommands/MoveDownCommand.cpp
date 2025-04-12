@@ -17,9 +17,9 @@ void MoveDownCommand::Execute(ABaseFighterCharacter* fighter)
 {
 	if (fighter->GetCurrentState()->IsA(typeid(OnGroundFighterState)))
 	{
-		fighter->GetCurrentState()->Exit(*fighter);
+		/*fighter->GetCurrentState()->Exit(*fighter);
 		fighter->SetCurrentState(new CrouchFighterState());
-		fighter->GetCurrentState()->Enter(*fighter);
+		fighter->GetCurrentState()->Enter(*fighter);*/
 	}
 	else if (fighter->GetCurrentState()->IsA(typeid(InAirFighterState)))
 	{
