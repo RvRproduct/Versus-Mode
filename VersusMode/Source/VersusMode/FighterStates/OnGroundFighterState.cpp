@@ -25,22 +25,11 @@ void OnGroundFighterState::HandleInput(ABaseFighterCharacter& fighter, BaseComma
 
 void OnGroundFighterState::Enter(ABaseFighterCharacter& fighter)
 {
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(
-			-1,
-			5.f,
-			FColor::Yellow,
-			FString::Printf(TEXT("Here in OnGround"))
-		);
-	}
-
 	if (fighter.GetFighterType() == FighterTypes::Playable)
 	{
 		if (fighter.GetIsOnGround())
 		{
 			Exit(fighter);
-			fighter.SetCurrentState(new IdleFighterState());
 		}
 	}
 	else if (fighter.GetFighterType() == FighterTypes::AI)
@@ -48,40 +37,35 @@ void OnGroundFighterState::Enter(ABaseFighterCharacter& fighter)
 		if (fighter.GetIsOnGround())
 		{
 			Exit(fighter);
-			fighter.SetCurrentState(new PatrolFighterState());
-			if (GEngine)
-			{
-				GEngine->AddOnScreenDebugMessage(
-					-1,
-					5.f,
-					FColor::Yellow,
-					FString::Printf(TEXT("Trying to go to Patrol"))
-				);
-			}
 		}
 	}
 	else if (fighter.GetFighterType() == FighterTypes::AI2)
 	{
 		if (fighter.GetIsOnGround())
 		{
-			if (GEngine)
-			{
-				GEngine->AddOnScreenDebugMessage(
-					-1,
-					5.f,
-					FColor::Yellow,
-					FString::Printf(TEXT("Trying to go to Breath"))
-				);
-			}
 			Exit(fighter);
-			fighter.SetCurrentState(new BreathFighterState());
 		}
 	}
 }
 
 void OnGroundFighterState::Exit(ABaseFighterCharacter& fighter)
 {
+	if (fighter.GetFighterType() == FighterTypes::Playable)
+	{
 
+		fighter.SetCurrentState(new IdleFighterState());
+		fighter.GetCurrentState()->Enter(fighter);
+	}
+	else if (fighter.GetFighterType() == FighterTypes::AI)
+	{
+		fighter.SetCurrentState(new PatrolFighterState());
+		fighter.GetCurrentState()->Enter(fighter);
+	}
+	else if (fighter.GetFighterType() == FighterTypes::AI2)
+	{
+		fighter.SetCurrentState(new BreathFighterState());
+		fighter.GetCurrentState()->Enter(fighter);
+	}
 }
 
 void OnGroundFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)

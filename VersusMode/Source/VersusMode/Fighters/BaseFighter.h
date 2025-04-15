@@ -46,7 +46,7 @@ protected:
 	float fighterCapsuleHalfHeight;
 	FCollisionShape cachedFighterCapsuleShape;
 	float jumpHeight;
-	int maxNumberOfJumps;
+	int maxNumberOfAirJumps;
 	float weight;
 	FVector currentFighterVelocity;
 	float groundWalkSpeed;
@@ -63,7 +63,7 @@ protected:
 
 	float breathRate;
 
-	int currentNumberOfJumps;
+	int currentNumberOfAirJumps;
 	bool isOnGround;
 	bool isFacingRight;
 	bool isFastFalling;
@@ -84,12 +84,14 @@ public:
 
 	FighterTypes GetFighterType();
 
+	// Breathing
 	bool GetIsBreathingDown();
 
 	void SetIsBreathingDown(bool newBreathingDown);
 
 	float GetBreathRate();
 
+	// AI
 	float GetAwareOfPlayerDistance();
 
 	float GetOnPlayerDistance();
@@ -100,26 +102,43 @@ public:
 
 	void SetCurrentPatrolThreshold(float newPatrolThreshold);
 
+	// Check if Player is on the Ground
 	bool GetIsOnGround();
 
 	void SetIsOnGround(bool isGrounded);
 
+	// Running
+
+	void SetIsRunning(bool _isRunning);
+
 	bool GetIsRunning();
 
+	// Is Facing Right
 	bool GetIsFacingRight();
 
 	void SetIsFacingRight(bool facingRight);
 
+	// Is Fast Falling
 	bool GetIsFastFalling();
 
 	void SetIsFastFalling(bool fastFalling);
 
+	// Get Ground Speeds
 	float GetGroundWalkSpeed();
 
 	float GetGroundRunSpeed();
 
+	// Number of Jumps
+	void SetNumberOfAirJumps(int _currentNumberOfAirJumps);
+
+	int GetNumberOfAirJumps();
+
+	int GetMaxNumberOfAirJumps();
+
+	// Get Jump Height
 	float GetJumpHeight();
 
+	// Player Movement
 	void SetIsMoveUp(bool _isMoveUp);
 
 	bool GetIsMoveUp();

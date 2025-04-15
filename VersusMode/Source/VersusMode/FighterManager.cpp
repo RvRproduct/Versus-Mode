@@ -35,6 +35,7 @@ void AFighterManager::UnregisterFighter(AActor* fighter)
 void AFighterManager::UpdateQueryParams()
 {
 	cachedQueryParams = FCollisionQueryParams();
+	cachedQueryParams.bFindInitialOverlaps = true;
 
 	for (AActor* fighter : fighters)
 	{

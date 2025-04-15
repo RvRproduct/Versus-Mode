@@ -43,6 +43,9 @@ ABaseFighterCharacter::ABaseFighterCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
 	GetCharacterMovement()->bOrientRotationToMovement = false;
+
+	GroundCheckPoint = CreateDefaultSubobject<USceneComponent>(TEXT("GroundCheckPoint"));
+	GroundCheckPoint->SetupAttachment(GetRootComponent());
 }
 
 // Called when the game starts or when spawned
@@ -57,6 +60,11 @@ void ABaseFighterCharacter::BeginPlay()
 	else
 	{
 		UE_LOG(LogTemp, Error, TEXT("FighterManager is missing in the world"));
+	}
+
+	if (!GroundCheckPoint)
+	{
+		UE_LOG(LogTemp, Error, TEXT("GroundCheckPoint is missing on the fighter!"));
 	}
 
 	SetStats();
@@ -83,6 +91,8 @@ void ABaseFighterCharacter::BeginPlay()
 void ABaseFighterCharacter::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
+
+	CheckIsOnGround(this);
 
 	if (currentState != nullptr)
 	{
@@ -331,17 +341,17 @@ void ABaseFighterCharacter::FighterSwitchLevel(const FInputActionValue& Value)
 
 void ABaseFighterCharacter::CheckIsOnGround(ABaseFighterCharacter* fighter)
 {
-	FHitResult hitResult;
-	FVector start = fighter->GetActorLocation();
-	FVector end = start - FVector(0, 0, 10);
+	TArray<FHitResult> hitResult;
+	FVector start = fighter->GroundCheckPoint->GetComponentLocation();
+	FVector end = start - FVector(0, 0, 2);
 
 	fighter->SetIsOnGround(
-		GetWorld()->SweepSingleByChannel(
+		GetWorld()->SweepMultiByChannel(
 			hitResult,
 			start,
 			end,
 			FQuat::Identity,
-			ECC_Pawn,
+			CollisionChannels::ECC_Ground,
 			fighter->cachedFighterCapsuleShape,
 			fighterManager->cachedQueryParams
 		)

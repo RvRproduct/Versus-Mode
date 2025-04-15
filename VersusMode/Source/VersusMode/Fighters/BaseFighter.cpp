@@ -67,9 +67,29 @@ void BaseFighter::SetIsOnGround(bool isGrounded)
 	isOnGround = isGrounded;
 }
 
+void BaseFighter::SetIsRunning(bool _isRunning)
+{
+	isRunning = _isRunning;
+}
+
 bool BaseFighter::GetIsRunning()
 {
 	return isRunning;
+}
+
+void BaseFighter::SetNumberOfAirJumps(int _currentNumberOfAirJumps)
+{
+	currentNumberOfAirJumps = _currentNumberOfAirJumps;
+}
+
+int BaseFighter::GetNumberOfAirJumps()
+{
+	return currentNumberOfAirJumps;
+}
+
+int BaseFighter::GetMaxNumberOfAirJumps()
+{
+	return maxNumberOfAirJumps;
 }
 
 bool BaseFighter::GetIsFacingRight()

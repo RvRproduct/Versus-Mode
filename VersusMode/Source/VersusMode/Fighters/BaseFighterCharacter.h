@@ -9,6 +9,7 @@
 #include "EnhancedInputComponent.h"
 #include "EnhancedInputSubsystems.h"
 #include "VersusMode/FighterManager.h"
+#include "VersusMode/CollisionChannels.h"
 #include "BaseFighterCharacter.generated.h"
 
 UCLASS()
@@ -25,6 +26,9 @@ public:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Fighter Type")
 	FighterTypes chosenFighterType;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Ground Check", meta = (AllowPrivateAccess = "true"))
+	USceneComponent* GroundCheckPoint;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Fighter Input Mapping")
 	class UInputMappingContext* FighterInputMapping;
