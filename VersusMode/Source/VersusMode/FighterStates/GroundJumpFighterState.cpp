@@ -20,7 +20,16 @@ void GroundJumpFighterState::Enter(ABaseFighterCharacter& fighter)
 	if (fighter.GetFighterType() == FighterTypes::Playable)
 	{
 		fighter.LaunchCharacter(FVector(0, 0, fighter.GetJumpHeight()), true, true);
-		
+
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(
+				-1,
+				5.f,
+				FColor::Yellow,
+				FString::Printf(TEXT("Enter Ground Jump"))
+			);
+		}
 	}
 }
 
@@ -55,7 +64,6 @@ void GroundJumpFighterState::Update(ABaseFighterCharacter& fighter, float DeltaT
 		{
 			fighter.LaunchCharacter(FVector(0, 0, fighter.GetJumpHeight()), true, true);
 		}
-
 	}
 }
 

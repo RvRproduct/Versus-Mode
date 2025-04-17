@@ -59,8 +59,8 @@ void AAITestFighter::SetStats()
 
 	currentState = new OnGroundFighterState();
 
-	fighterCapsuleRadius = GetCapsuleComponent()->GetUnscaledCapsuleRadius();
-	fighterCapsuleHalfHeight = GetCapsuleComponent()->GetUnscaledCapsuleHalfHeight();
+	fighterCapsuleRadius = GetCapsuleComponent()->GetScaledCapsuleRadius();
+	fighterCapsuleHalfHeight = GetCapsuleComponent()->GetScaledCapsuleHalfHeight();
 	cachedFighterCapsuleShape = FCollisionShape::MakeCapsule(fighterCapsuleRadius, fighterCapsuleHalfHeight);
 	jumpHeight = 500.0f;
 	maxNumberOfAirJumps = 8;

@@ -27,9 +27,6 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Fighter Type")
 	FighterTypes chosenFighterType;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Ground Check", meta = (AllowPrivateAccess = "true"))
-	USceneComponent* GroundCheckPoint;
-
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Fighter Input Mapping")
 	class UInputMappingContext* FighterInputMapping;
 

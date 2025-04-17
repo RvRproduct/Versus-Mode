@@ -43,9 +43,6 @@ ABaseFighterCharacter::ABaseFighterCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationRoll = false;
 	GetCharacterMovement()->bOrientRotationToMovement = false;
-
-	GroundCheckPoint = CreateDefaultSubobject<USceneComponent>(TEXT("GroundCheckPoint"));
-	GroundCheckPoint->SetupAttachment(GetRootComponent());
 }
 
 // Called when the game starts or when spawned
@@ -62,11 +59,7 @@ void ABaseFighterCharacter::BeginPlay()
 		UE_LOG(LogTemp, Error, TEXT("FighterManager is missing in the world"));
 	}
 
-	if (!GroundCheckPoint)
-	{
-		UE_LOG(LogTemp, Error, TEXT("GroundCheckPoint is missing on the fighter!"));
-	}
-
+	// Set all the Fighter Stats
 	SetStats();
 
 	if (currentState != nullptr)
@@ -154,6 +147,8 @@ void ABaseFighterCharacter::FighterMoveUpPressed(const FInputActionInstance& Ins
 	{
 		SetIsMoveUp(true);
 		wKey->Execute(this);
+
+		
 	}
 	else
 	{
@@ -182,8 +177,20 @@ void ABaseFighterCharacter::FighterMoveLeftPressed(const FInputActionInstance& I
 
 	if (!GetIsMoveRight())
 	{
+
+		if (GEngine)
+		{
+			GEngine->AddOnScreenDebugMessage(
+				-1,
+				5.f,
+				FColor::Yellow,
+				FString::Printf(TEXT("This is the air Control Value "))
+			);
+		}
 		SetIsMoveLeft(true);
 		aKey->Execute(this);
+
+
 	}
 	else
 	{
@@ -295,7 +302,19 @@ void ABaseFighterCharacter::FighterJumpReleased(const FInputActionInstance& Inst
 {
 	if (fighterType != FighterTypes::Playable) { return; }
 
-	noKey->Execute(this);
+
+	if (GetIsMoveLeft() && !GetIsMoveRight())
+	{
+		aKey->Execute(this);
+	}
+	else if (!GetIsMoveLeft() && GetIsMoveRight())
+	{
+		dKey->Execute(this);
+	}
+	else
+	{
+		CheckIfNoMovementKey();
+	}
 }
 
 void ABaseFighterCharacter::FighterRunPressed(const FInputActionInstance& Instance)
@@ -341,11 +360,13 @@ void ABaseFighterCharacter::FighterSwitchLevel(const FInputActionValue& Value)
 
 void ABaseFighterCharacter::CheckIsOnGround(ABaseFighterCharacter* fighter)
 {
+	float bufferBelow = 5.0f;
 	TArray<FHitResult> hitResult;
-	FVector start = fighter->GroundCheckPoint->GetComponentLocation();
-	FVector end = start - FVector(0, 0, 2);
+	FVector start = fighter->GetActorLocation();
 
-	fighter->SetIsOnGround(
+	FVector end = start - FVector(0, 0, bufferBelow);
+
+	bool bHit =
 		GetWorld()->SweepMultiByChannel(
 			hitResult,
 			start,
@@ -354,7 +375,8 @@ void ABaseFighterCharacter::CheckIsOnGround(ABaseFighterCharacter* fighter)
 			CollisionChannels::ECC_Ground,
 			fighter->cachedFighterCapsuleShape,
 			fighterManager->cachedQueryParams
-		)
-	);
+		);
+
+	fighter->SetIsOnGround(bHit);
 }
 

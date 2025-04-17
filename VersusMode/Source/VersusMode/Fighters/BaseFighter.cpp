@@ -122,6 +122,26 @@ float BaseFighter::GetGroundRunSpeed()
 	return groundRunSpeed;
 }
 
+float BaseFighter::GetAirControlValue()
+{
+	return airControl;
+}
+
+void  BaseFighter::SetAirControlValue(float _airControl)
+{
+	airControl = _airControl;
+}
+
+float BaseFighter::GetAirSpeed()
+{
+	return airSpeed;
+}
+
+void BaseFighter::SetAirSpeed(float _airSpeed)
+{
+	airSpeed = _airSpeed;
+}
+
 float BaseFighter::GetBreathRate()
 {
 	return breathRate;

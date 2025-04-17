@@ -54,6 +54,7 @@ protected:
 	float groundSlideRate;
 	float groundSuperSlideMultiplier;
 	float airSpeed;
+	float airControl;
 	float gravity;
 	float meterAmount;
 	float maxPatrolThreshold;
@@ -127,6 +128,15 @@ public:
 	float GetGroundWalkSpeed();
 
 	float GetGroundRunSpeed();
+
+	// Get Air Speeds
+	float GetAirControlValue();
+
+	void  SetAirControlValue(float _airControl);
+
+	float GetAirSpeed();
+
+	void SetAirSpeed(float _airSpeed);
 
 	// Number of Jumps
 	void SetNumberOfAirJumps(int _currentNumberOfAirJumps);

@@ -8,7 +8,7 @@
 /**
  * 
  */
-class VERSUSMODE_API AirNeutralState : public InAirFighterState
+class VERSUSMODE_API AirIdleFighterState : public InAirFighterState
 {
 public:
 	void SetMovement(FVector movementDirection) override;
@@ -18,5 +18,4 @@ public:
 	void Update(ABaseFighterCharacter& fighter, float DeltaTime) override;
 	void PhysicsUpdate(ABaseFighterCharacter& fighter) override;
 	void AnimationTriggerEvent(ABaseFighterCharacter& fighter) override;
-
 };

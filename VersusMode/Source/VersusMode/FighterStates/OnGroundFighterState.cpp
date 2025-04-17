@@ -25,10 +25,12 @@ void OnGroundFighterState::HandleInput(ABaseFighterCharacter& fighter, BaseComma
 
 void OnGroundFighterState::Enter(ABaseFighterCharacter& fighter)
 {
+
 	if (fighter.GetFighterType() == FighterTypes::Playable)
 	{
 		if (fighter.GetIsOnGround())
 		{
+			fighter.SetNumberOfAirJumps(fighter.GetMaxNumberOfAirJumps());
 			Exit(fighter);
 		}
 	}

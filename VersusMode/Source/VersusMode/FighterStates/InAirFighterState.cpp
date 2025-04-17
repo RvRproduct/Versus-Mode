@@ -2,7 +2,7 @@
 
 
 #include "InAirFighterState.h"
-#include "AirNeutralState.h"
+#include "AirIdleFighterState.h"
 
 void InAirFighterState::SetMovement(FVector movementDirection)
 {
@@ -21,17 +21,7 @@ void InAirFighterState::HandleInput(ABaseFighterCharacter& fighter, BaseCommand&
 
 void InAirFighterState::Enter(ABaseFighterCharacter& fighter)
 {
-	if (fighter.GetFighterType() == FighterTypes::Playable)
-	{
-		if (!fighter.GetIsOnGround())
-		{
-			Exit(fighter);
-		}
-		else
-		{
-
-		}
-	}
+	
 }
 
 void InAirFighterState::Exit(ABaseFighterCharacter& fighter)
@@ -48,14 +38,24 @@ void InAirFighterState::Exit(ABaseFighterCharacter& fighter)
 			);
 		}
 
-		fighter.SetCurrentState(new AirNeutralState());
+		fighter.SetCurrentState(new AirIdleFighterState());
 		fighter.GetCurrentState()->Enter(fighter);
 	}
 }
 
 void InAirFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 {
+	if (fighter.GetFighterType() == FighterTypes::Playable)
+	{
+		if (!fighter.GetIsOnGround())
+		{
+			Exit(fighter);
+		}
+		else
+		{
 
+		}
+	}
 }
 
 void InAirFighterState::PhysicsUpdate(ABaseFighterCharacter& fighter)

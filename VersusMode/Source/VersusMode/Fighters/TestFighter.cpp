@@ -57,8 +57,8 @@ void ATestFighter::SetStats()
 
 	currentState = new OnGroundFighterState();
 
-	fighterCapsuleRadius = GetCapsuleComponent()->GetUnscaledCapsuleRadius();
-	fighterCapsuleHalfHeight = GetCapsuleComponent()->GetUnscaledCapsuleHalfHeight();
+	fighterCapsuleRadius = GetCapsuleComponent()->GetScaledCapsuleRadius();
+	fighterCapsuleHalfHeight = GetCapsuleComponent()->GetScaledCapsuleHalfHeight();
 	cachedFighterCapsuleShape = FCollisionShape::MakeCapsule(fighterCapsuleRadius, fighterCapsuleHalfHeight);
 	jumpHeight = 500.0f;
 	maxNumberOfAirJumps = 1;
@@ -67,6 +67,8 @@ void ATestFighter::SetStats()
 	groundWalkSpeed = 400.0f;
 	groundRunSpeed = 800.0f;
 	groundSlideRate = 40.0f;
+	airSpeed = 400.0f;
+	airControl = 1.0f;
 	isOnGround = true;
 	isMoveUp = false;
 	isMoveDown = false;
@@ -76,6 +78,9 @@ void ATestFighter::SetStats()
 	airSpeed = 250.0f;
 	gravity = 7.0f;
 	meterAmount = 9001.0f;
+
+	// Make Sure Air Control is Set
+	GetCharacterMovement()->AirControl = GetAirControlValue();
 }
 
 

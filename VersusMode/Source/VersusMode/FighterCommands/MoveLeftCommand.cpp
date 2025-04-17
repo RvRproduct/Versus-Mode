@@ -49,7 +49,9 @@ void MoveLeftCommand::Execute(ABaseFighterCharacter* fighter)
 	else if (fighter->GetCurrentState()->IsA(typeid(InAirFighterState)))
 	{
 		fighter->GetCurrentState()->Exit(*fighter);
+		fighter->SetIsFacingRight(false);
 		fighter->SetCurrentState(new AirMoveFighterState());
+		fighter->GetCurrentState()->SetMovement(FVector(-1.0f, 0.0f, 0.0f));
 		fighter->GetCurrentState()->Enter(*fighter);
 	}
 }
