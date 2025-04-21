@@ -39,16 +39,6 @@ void MoveLeftCommand::Execute(ABaseFighterCharacter* fighter)
 		else
 		{
 
-			if (GEngine)
-			{
-				GEngine->AddOnScreenDebugMessage(
-					-1,
-					5.f,
-					FColor::Yellow,
-					FString::Printf(TEXT("Trying to move left"))
-				);
-			}
-
 			fighter->GetCurrentState()->Exit(*fighter);
 			fighter->SetIsFacingRight(false);
 			fighter->SetCurrentState(new WalkFighterState());

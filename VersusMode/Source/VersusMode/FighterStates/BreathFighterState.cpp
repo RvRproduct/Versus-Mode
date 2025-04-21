@@ -24,6 +24,8 @@ void BreathFighterState::Enter(ABaseFighterCharacter& fighter)
 void BreathFighterState::Exit(ABaseFighterCharacter& fighter)
 {
 	fighter.SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
+	fighter.SetCurrentState(new FleeFighterState());
+	fighter.GetCurrentState()->Enter(fighter);
 }
 
 void BreathFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
@@ -40,7 +42,7 @@ void BreathFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 	if (distanceFromPlayer < fighter.GetAwareOfPlayerDistance())
 	{
 		Exit(fighter);
-		fighter.SetCurrentState(new FleeFighterState());
+		
 	}
 }
 

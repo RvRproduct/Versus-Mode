@@ -21,15 +21,6 @@ void GroundJumpFighterState::Enter(ABaseFighterCharacter& fighter)
 	{
 		fighter.LaunchCharacter(FVector(0, 0, fighter.GetJumpHeight()), true, true);
 
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(
-				-1,
-				5.f,
-				FColor::Yellow,
-				FString::Printf(TEXT("Enter Ground Jump"))
-			);
-		}
 	}
 }
 

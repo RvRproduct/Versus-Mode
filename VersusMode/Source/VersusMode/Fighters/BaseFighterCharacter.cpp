@@ -186,20 +186,8 @@ void ABaseFighterCharacter::FighterMoveLeftPressed(const FInputActionInstance& I
 
 	if (!GetIsMoveRight())
 	{
-
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(
-				-1,
-				5.f,
-				FColor::Yellow,
-				FString::Printf(TEXT("This is the air Control Value "))
-			);
-		}
 		SetIsMoveLeft(true);
 		aKey->Execute(this);
-
-
 	}
 	else
 	{

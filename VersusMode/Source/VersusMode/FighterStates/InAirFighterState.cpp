@@ -28,16 +28,6 @@ void InAirFighterState::Exit(ABaseFighterCharacter& fighter)
 {
 	if (fighter.GetFighterType() == FighterTypes::Playable)
 	{
-		if (GEngine)
-		{
-			GEngine->AddOnScreenDebugMessage(
-				-1,
-				5.f,
-				FColor::Yellow,
-				FString::Printf(TEXT("Trying to go to in air state"))
-			);
-		}
-
 		fighter.SetCurrentState(new AirIdleFighterState());
 		fighter.GetCurrentState()->Enter(fighter);
 	}

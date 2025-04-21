@@ -36,7 +36,7 @@ void FleeFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 	else if (fighter.GetDistanceTo(fighter.fighterManager->playerFighter) > fighter.GetAwareOfPlayerDistance())
 	{
 		Exit(fighter);
-		fighter.SetCurrentState(new BreathFighterState());
+		fighter.SetCurrentState(new GroundJumpFighterState());
 		return;
 	}
 

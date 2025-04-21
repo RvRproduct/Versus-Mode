@@ -33,15 +33,7 @@ void WalkFighterState::Enter(ABaseFighterCharacter& fighter)
 
 void WalkFighterState::Exit(ABaseFighterCharacter& fighter)
 {
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(
-			-1,
-			5.f,
-			FColor::Yellow,
-			FString::Printf(TEXT("Exit Walk"))
-		);
-	}
+
 	fighter.ConsumeMovementInputVector();
 }
 

@@ -19,15 +19,7 @@ void AirIdleFighterState::HandleInput(ABaseFighterCharacter& fighter, BaseComman
 
 void AirIdleFighterState::Enter(ABaseFighterCharacter& fighter)
 {
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(
-			-1,
-			5.f,
-			FColor::Yellow,
-			FString::Printf(TEXT("In Air IDel State"))
-		);
-	}
+
 }
 
 void AirIdleFighterState::Exit(ABaseFighterCharacter& fighter)
