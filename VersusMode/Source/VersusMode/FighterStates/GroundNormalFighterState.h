@@ -2,16 +2,17 @@
 
 #pragma once
 
-#include "InAirFighterState.h"
+#include "OnGroundFighterState.h"
 #include "CoreMinimal.h"
 
 /**
  * 
  */
-class VERSUSMODE_API AirIdleFighterState : public InAirFighterState
+class VERSUSMODE_API GroundNormalFighterState : OnGroundFighterState
 {
 public:
-	void AirMoveSpeedCheck(ABaseFighterCharacter& fighter, BaseFighterState* airMoveFighterState);
+	FVector currentFighterMovement = FVector::Zero();
+
 	void SetMovement(FVector movementDirection) override;
 	void HandleInput(ABaseFighterCharacter& fighter, BaseCommand& input) override;
 	void Enter(ABaseFighterCharacter& fighter) override;

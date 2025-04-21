@@ -7,19 +7,30 @@
 #include "VersusMode/Fighters/BaseFighter.h"
 
 // States
+#include "VersusMode/FighterStates/CreepFighterState.h"
 #include "VersusMode/FighterStates/RunFighterState.h"
 #include "VersusMode/FighterStates/WalkFighterState.h"
-#include "VersusMode/FighterStates/AirMoveFighterState.h"
+#include "VersusMode/FighterStates/AirMoveSlowFighterState.h"
+#include "VersusMode/FighterStates/AirMoveNormalFighterState.h"
+#include "VersusMode/FighterStates/AirMoveFastFighterState.h"
 
 void MoveRightCommand::Execute(ABaseFighterCharacter* fighter)
 {
 	if (fighter->GetCurrentState()->IsA(typeid(OnGroundFighterState)))
 	{
-		if (fighter->GetIsRunning())
+		if (fighter->GetIsRunning() && !fighter->GetIsCreeping())
 		{
 			fighter->GetCurrentState()->Exit(*fighter);
 			fighter->SetIsFacingRight(true);
 			fighter->SetCurrentState(new RunFighterState());
+			fighter->GetCurrentState()->SetMovement(FVector(1.0f, 0.0f, 0.0f));
+			fighter->GetCurrentState()->Enter(*fighter);
+		}
+		else if (fighter->GetIsCreeping())
+		{
+			fighter->GetCurrentState()->Exit(*fighter);
+			fighter->SetIsFacingRight(true);
+			fighter->SetCurrentState(new CreepFighterState());
 			fighter->GetCurrentState()->SetMovement(FVector(1.0f, 0.0f, 0.0f));
 			fighter->GetCurrentState()->Enter(*fighter);
 		}
@@ -34,10 +45,29 @@ void MoveRightCommand::Execute(ABaseFighterCharacter* fighter)
 	}
 	else if (fighter->GetCurrentState()->IsA(typeid(InAirFighterState)))
 	{
-		fighter->GetCurrentState()->Exit(*fighter);
-		fighter->SetIsFacingRight(true);
-		fighter->SetCurrentState(new AirMoveFighterState());
-		fighter->GetCurrentState()->SetMovement(FVector(1.0f, 0.0f, 0.0f));
-		fighter->GetCurrentState()->Enter(*fighter);
+		if (fighter->GetIsRunning() && !fighter->GetIsCreeping())
+		{
+			fighter->GetCurrentState()->Exit(*fighter);
+			fighter->SetIsFacingRight(true);
+			fighter->SetCurrentState(new AirMoveFastFighterState());
+			fighter->GetCurrentState()->SetMovement(FVector(1.0f, 0.0f, 0.0f));
+			fighter->GetCurrentState()->Enter(*fighter);
+		}
+		else if (fighter->GetIsCreeping())
+		{
+			fighter->GetCurrentState()->Exit(*fighter);
+			fighter->SetIsFacingRight(true);
+			fighter->SetCurrentState(new AirMoveSlowFighterState());
+			fighter->GetCurrentState()->SetMovement(FVector(1.0f, 0.0f, 0.0f));
+			fighter->GetCurrentState()->Enter(*fighter);
+		}
+		else
+		{
+			fighter->GetCurrentState()->Exit(*fighter);
+			fighter->SetIsFacingRight(true);
+			fighter->SetCurrentState(new AirMoveNormalFighterState());
+			fighter->GetCurrentState()->SetMovement(FVector(1.0f, 0.0f, 0.0f));
+			fighter->GetCurrentState()->Enter(*fighter);
+		}
 	}
 }

@@ -12,6 +12,8 @@
 #include "VersusMode/CollisionChannels.h"
 #include "BaseFighterCharacter.generated.h"
 
+class AFNormal;
+
 UCLASS()
 class VERSUSMODE_API ABaseFighterCharacter : public ACharacter, public BaseFighter
 {
@@ -20,6 +22,12 @@ class VERSUSMODE_API ABaseFighterCharacter : public ACharacter, public BaseFight
 public:
 	// Sets default values for this character's properties
 	ABaseFighterCharacter();
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Fighter ID")
+	int fighterID;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Fighter Attack")
+	AFNormal* fighterAttack;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Fighter Manager")
 	AFighterManager* fighterManager;
@@ -49,10 +57,16 @@ public:
 	TObjectPtr<UInputAction> RunAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> CreepAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> SlideAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> SuperSlideAction;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
+	TObjectPtr<UInputAction> NormalAction;
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Input")
 	TObjectPtr<UInputAction> SwitchLevelAction;
@@ -86,11 +100,29 @@ public:
 	void FighterRunPressed(const FInputActionInstance& Instance);
 	void FighterRunReleased(const FInputActionInstance& Instance);
 
+	void FighterCreepPressed(const FInputActionInstance& Instance);
+	void FighterCreepReleased(const FInputActionInstance& Instance);
 
 	void FighterSlide(const FInputActionValue& Value);
 	void FighterSuperSlide(const FInputActionValue& Value);
+
+	void FighterNormalPressed(const FInputActionInstance& Instance);
+	void FighterNormalReleased(const FInputActionInstance& Instance);
+
 	void FighterSwitchLevel(const FInputActionValue& Value);
 
 	void CheckIfNoMovementKey();
 	void CheckIsOnGround(ABaseFighterCharacter* fighter);
+
+	void FighterGotHit(bool isRight)
+	{
+		if (isRight)
+		{
+			LaunchCharacter(FVector(GetCurrentFighterPercent() * 10, 0, GetJumpHeight()), true, true);
+		}
+		else
+		{
+			LaunchCharacter(FVector(GetCurrentFighterPercent() * 10 * -1, 0, GetJumpHeight()), true, true);
+		}
+	}
 };

@@ -31,6 +31,9 @@
 #include "VersusMode/FighterCommands/SlideRightCommand.h"
 #include "VersusMode/FighterCommands/SuperSlideLeftCommand.h"
 #include "VersusMode/FighterCommands/SuperSlideRightCommand.h"
+
+#include "VersusMode/FNormal.h"
+
 #include "CoreMinimal.h"
 
 // Sets default values
@@ -126,11 +129,17 @@ void ABaseFighterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterRunPressed);
 		EnhancedInputComponent->BindAction(RunAction, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterRunReleased);
 
+		EnhancedInputComponent->BindAction(CreepAction, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterCreepPressed);
+		EnhancedInputComponent->BindAction(CreepAction, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterCreepReleased);
+
 		EnhancedInputComponent->BindAction(SlideAction, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterSlide);
 		EnhancedInputComponent->BindAction(SlideAction, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterSlide);
 
 		EnhancedInputComponent->BindAction(SuperSlideAction, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterSuperSlide);
 		EnhancedInputComponent->BindAction(SwitchLevelAction, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterSwitchLevel);
+
+		EnhancedInputComponent->BindAction(NormalAction, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterNormalPressed);
+		EnhancedInputComponent->BindAction(NormalAction, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterNormalReleased);
 	}
 }
 
@@ -331,6 +340,20 @@ void ABaseFighterCharacter::FighterRunReleased(const FInputActionInstance& Insta
 	isRunning = false;
 }
 
+void ABaseFighterCharacter::FighterCreepPressed(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	isCreeping = true;
+}
+
+void ABaseFighterCharacter::FighterCreepReleased(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	isCreeping = false;
+}
+
 void ABaseFighterCharacter::FighterSlide(const FInputActionValue& Value)
 {
 
@@ -339,6 +362,21 @@ void ABaseFighterCharacter::FighterSlide(const FInputActionValue& Value)
 void ABaseFighterCharacter::FighterSuperSlide(const FInputActionValue& Value)
 {
 
+}
+
+void ABaseFighterCharacter::FighterNormalPressed(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	isNormal = true;
+	uKey->Execute(this);
+}
+
+void ABaseFighterCharacter::FighterNormalReleased(const FInputActionInstance& Instance)
+{
+	if (fighterType != FighterTypes::Playable) { return; }
+
+	isNormal = false;
 }
 
 void ABaseFighterCharacter::FighterSwitchLevel(const FInputActionValue& Value)

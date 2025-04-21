@@ -49,11 +49,14 @@ protected:
 	int maxNumberOfAirJumps;
 	float weight;
 	FVector currentFighterVelocity;
+	float groundCreepSpeed;
 	float groundWalkSpeed;
 	float groundRunSpeed;
 	float groundSlideRate;
 	float groundSuperSlideMultiplier;
-	float airSpeed;
+	float airSlowSpeed;
+	float airNormalSpeed;
+	float airFastSpeed;
 	float airControl;
 	float gravity;
 	float meterAmount;
@@ -67,14 +70,22 @@ protected:
 	int currentNumberOfAirJumps;
 	bool isOnGround;
 	bool isFacingRight;
+	bool isAirFacingRight;
 	bool isFastFalling;
+
+	// Used for Air and Ground
 	bool isRunning;
+	bool isCreeping;
 	bool isBreathingDown;
 
 	bool isMoveUp;
 	bool isMoveDown;
 	bool isMoveLeft;
 	bool isMoveRight;
+
+	bool isNormal;
+
+	float currentFighterPercent;
 
 public:
 	float GetFighterCapsuleRadius();
@@ -109,15 +120,29 @@ public:
 	void SetIsOnGround(bool isGrounded);
 
 	// Running
-
 	void SetIsRunning(bool _isRunning);
 
 	bool GetIsRunning();
+
+	// Creep
+	void SetIsCreeping(bool _isCreeping);
+
+	bool GetIsCreeping();
+
+	// Normal
+	void SetIsNormal(bool _isNormal);
+
+	bool GetIsNormal();
 
 	// Is Facing Right
 	bool GetIsFacingRight();
 
 	void SetIsFacingRight(bool facingRight);
+
+	// Is Air Facing Right
+	bool GetIsAirFacingRight();
+
+	void SetIsAirFacingRight(bool _facingAirRight);
 
 	// Is Fast Falling
 	bool GetIsFastFalling();
@@ -129,14 +154,24 @@ public:
 
 	float GetGroundRunSpeed();
 
+	float GetGroundCreepSpeed();
+
 	// Get Air Speeds
 	float GetAirControlValue();
 
 	void  SetAirControlValue(float _airControl);
 
-	float GetAirSpeed();
+	float GetAirSlowSpeed();
 
-	void SetAirSpeed(float _airSpeed);
+	void SetAirSlowSpeed(float _airSlowSpeed);
+
+	float GetAirNormalSpeed();
+
+	void SetAirNormalSpeed(float _airNormalSpeed);
+
+	float GetAirFastSpeed();
+
+	void SetAirFastSpeed(float _airSlowSpeed);
 
 	// Number of Jumps
 	void SetNumberOfAirJumps(int _currentNumberOfAirJumps);
@@ -164,6 +199,10 @@ public:
 	void SetIsMoveRight(bool _isMoveRight);
 
 	bool GetIsMoveRight();
+
+	float GetCurrentFighterPercent();
+
+	void SetCurrentFighterPercent(float _currentFighterPercent);
 
 	FVector GetCurrentFighterVelocity();
 

@@ -77,6 +77,26 @@ bool BaseFighter::GetIsRunning()
 	return isRunning;
 }
 
+void BaseFighter::SetIsCreeping(bool _isCreeping)
+{
+	isCreeping = _isCreeping;
+}
+
+bool BaseFighter::GetIsCreeping()
+{
+	return isCreeping;
+}
+
+void BaseFighter::SetIsNormal(bool _isNormal)
+{
+	isNormal = _isNormal;
+}
+
+bool BaseFighter::GetIsNormal()
+{
+	return isNormal;
+}
+
 void BaseFighter::SetNumberOfAirJumps(int _currentNumberOfAirJumps)
 {
 	currentNumberOfAirJumps = _currentNumberOfAirJumps;
@@ -102,6 +122,16 @@ void BaseFighter::SetIsFacingRight(bool facingRight)
 	isFacingRight = facingRight;
 }
 
+bool BaseFighter::GetIsAirFacingRight()
+{
+	return isAirFacingRight;
+}
+
+void BaseFighter::SetIsAirFacingRight(bool _facingAirRight)
+{
+	isAirFacingRight = _facingAirRight;
+}
+
 bool BaseFighter::GetIsFastFalling()
 {
 	return isFastFalling;
@@ -110,6 +140,11 @@ bool BaseFighter::GetIsFastFalling()
 void BaseFighter::SetIsFastFalling(bool fastFalling)
 {
 	isFastFalling = fastFalling;
+}
+
+float BaseFighter::GetGroundCreepSpeed()
+{
+	return groundCreepSpeed;
 }
 
 float BaseFighter::GetGroundWalkSpeed()
@@ -132,14 +167,34 @@ void  BaseFighter::SetAirControlValue(float _airControl)
 	airControl = _airControl;
 }
 
-float BaseFighter::GetAirSpeed()
+float BaseFighter::GetAirSlowSpeed()
 {
-	return airSpeed;
+	return airSlowSpeed;
 }
 
-void BaseFighter::SetAirSpeed(float _airSpeed)
+void BaseFighter::SetAirSlowSpeed(float _airSlowSpeed)
 {
-	airSpeed = _airSpeed;
+	airSlowSpeed = _airSlowSpeed;
+}
+
+float BaseFighter::GetAirNormalSpeed()
+{
+	return airNormalSpeed;
+}
+
+void BaseFighter::SetAirNormalSpeed(float _airNormalSpeed)
+{
+	airNormalSpeed = _airNormalSpeed;
+}
+
+float BaseFighter::GetAirFastSpeed()
+{
+	return airFastSpeed;
+}
+
+void BaseFighter::SetAirFastSpeed(float _airFastSpeed)
+{
+	airFastSpeed = _airFastSpeed;
 }
 
 float BaseFighter::GetBreathRate()
@@ -210,6 +265,16 @@ void BaseFighter::SetIsMoveRight(bool _isMoveRight)
 bool BaseFighter::GetIsMoveRight()
 {
 	return isMoveRight;
+}
+
+float BaseFighter::GetCurrentFighterPercent()
+{
+	return currentFighterPercent;
+}
+
+void BaseFighter::SetCurrentFighterPercent(float _currentFighterPercent)
+{
+	currentFighterPercent = _currentFighterPercent;
 }
 
 BaseFighterState* BaseFighter::GetCurrentState()

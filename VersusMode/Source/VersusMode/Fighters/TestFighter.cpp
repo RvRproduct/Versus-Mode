@@ -23,6 +23,7 @@
 #include "VersusMode/FighterCommands/MoveUpCommand.h"
 #include "VersusMode/FighterCommands/MoveDownCommand.h"
 #include "VersusMode/FighterCommands/IdleCommand.h"
+#include "VersusMode/FighterCommands/NormalCommand.h"
 #include "VersusMode/FighterCommands/SlideLeftCommand.h"
 #include "VersusMode/FighterCommands/SlideRightCommand.h"
 #include "VersusMode/FighterCommands/SuperSlideLeftCommand.h"
@@ -48,6 +49,7 @@ void ATestFighter::SetStats()
 	sKey = new MoveDownCommand();
 	aKey = new MoveLeftCommand();
 	dKey = new MoveRightCommand();
+	uKey = new NormalCommand();
 	noKey = new IdleCommand();
 	spacebar = new JumpCommand();
 	slideLeft = new SlideLeftCommand();
@@ -61,13 +63,16 @@ void ATestFighter::SetStats()
 	fighterCapsuleHalfHeight = GetCapsuleComponent()->GetScaledCapsuleHalfHeight();
 	cachedFighterCapsuleShape = FCollisionShape::MakeCapsule(fighterCapsuleRadius, fighterCapsuleHalfHeight);
 	jumpHeight = 500.0f;
-	maxNumberOfAirJumps = 1;
+	maxNumberOfAirJumps = 2;
 	currentNumberOfAirJumps = maxNumberOfAirJumps;
 	weight = 4000.0f;
+	groundCreepSpeed = 200.0f;
 	groundWalkSpeed = 400.0f;
 	groundRunSpeed = 800.0f;
 	groundSlideRate = 40.0f;
-	airSpeed = 400.0f;
+	airSlowSpeed = 200.0f;
+	airNormalSpeed = 400.0f;
+	airFastSpeed = 800.0f;
 	airControl = 1.0f;
 	isOnGround = true;
 	isMoveUp = false;
@@ -75,7 +80,6 @@ void ATestFighter::SetStats()
 	isMoveLeft = false;
 	isMoveRight = false;
 	groundSuperSlideMultiplier = 1.5f;
-	airSpeed = 250.0f;
 	gravity = 7.0f;
 	meterAmount = 9001.0f;
 

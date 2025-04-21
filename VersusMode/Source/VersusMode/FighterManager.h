@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Actor.h"
+#include "FighterHud.h"
 #include "FighterManager.generated.h"
 
 UCLASS()
@@ -18,11 +19,19 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Player Fighter")
 	AActor* playerFighter;
 
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Fighter Hud")
+	TSubclassOf<UFighterHud> FighterHudClass;
+
+	UFighterHud* fighterHud;
+
 	TArray<AActor*> fighters;
 	FCollisionQueryParams cachedQueryParams;
 
 	void RegisterFighter(AActor* fighter);
 	void UnregisterFighter(AActor* fighter);
+
+protected:
+	virtual void BeginPlay() override;
 
 private:
 	void UpdateQueryParams();

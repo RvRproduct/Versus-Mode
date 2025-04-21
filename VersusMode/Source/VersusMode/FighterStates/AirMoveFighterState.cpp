@@ -37,7 +37,7 @@ void AirMoveFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime
 	if (!fighter.GetIsOnGround())
 	{
 		FVector fighterMoveDirection = currentFighterMovement.GetSafeNormal();
-		fighter.GetCharacterMovement()->MaxWalkSpeed = fighter.GetAirSpeed();
+		fighter.GetCharacterMovement()->MaxWalkSpeed = fighter.GetAirNormalSpeed();
 		fighter.AddMovementInput(fighterMoveDirection);
 	}
 	else

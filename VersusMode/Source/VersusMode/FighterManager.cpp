@@ -12,6 +12,20 @@ AFighterManager::AFighterManager()
 	PrimaryActorTick.bCanEverTick = false;
 }
 
+void AFighterManager::BeginPlay()
+{
+	Super::BeginPlay();
+
+	if (FighterHudClass)
+	{
+		fighterHud = CreateWidget<UFighterHud>(GetWorld(), FighterHudClass);
+		if (fighterHud)
+		{
+			fighterHud->AddToViewport();
+		}
+	}
+}
+
 
 
 void AFighterManager::RegisterFighter(AActor* fighter)

@@ -3,6 +3,7 @@
 
 #include "WalkFighterState.h"
 #include "RunFighterState.h"
+#include "CreepFighterState.h"
 
 #include "Kismet/GameplayStatics.h"
 
@@ -46,16 +47,30 @@ void WalkFighterState::Exit(ABaseFighterCharacter& fighter)
 
 void WalkFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 {
-	if (!fighter.GetIsRunning())
+	if (!fighter.GetIsRunning() && !fighter.GetIsCreeping())
 	{
 		FVector fighterMoveDirection = currentFighterMovement.GetSafeNormal();
 		fighter.GetCharacterMovement()->MaxWalkSpeed = fighter.GetGroundWalkSpeed();
 		fighter.AddMovementInput(fighterMoveDirection);
 	}
-	else
+	else if (fighter.GetIsRunning() && !fighter.GetIsCreeping())
 	{
 		Exit(fighter);
 		fighter.SetCurrentState(new RunFighterState());
+		if (fighter.GetIsFacingRight())
+		{
+			fighter.GetCurrentState()->SetMovement(FVector(1.0f, 0.0f, 0.0f));
+		}
+		else
+		{
+			fighter.GetCurrentState()->SetMovement(FVector(-1.0f, 0.0f, 0.0f));
+		}
+		fighter.GetCurrentState()->Enter(fighter);
+	}
+	else
+	{
+		Exit(fighter);
+		fighter.SetCurrentState(new CreepFighterState());
 		if (fighter.GetIsFacingRight())
 		{
 			fighter.GetCurrentState()->SetMovement(FVector(1.0f, 0.0f, 0.0f));

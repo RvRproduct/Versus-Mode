@@ -8,10 +8,11 @@
 /**
  * 
  */
-class VERSUSMODE_API AirIdleFighterState : public InAirFighterState
+class VERSUSMODE_API AirMoveSlowFighterState : public InAirFighterState
 {
 public:
-	void AirMoveSpeedCheck(ABaseFighterCharacter& fighter, BaseFighterState* airMoveFighterState);
+	FVector currentFighterMovement = FVector::Zero();
+
 	void SetMovement(FVector movementDirection) override;
 	void HandleInput(ABaseFighterCharacter& fighter, BaseCommand& input) override;
 	void Enter(ABaseFighterCharacter& fighter) override;

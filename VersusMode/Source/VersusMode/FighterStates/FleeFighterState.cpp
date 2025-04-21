@@ -30,7 +30,7 @@ void FleeFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 	if (fighter.GetDistanceTo(fighter.fighterManager->playerFighter) < fighter.GetOnPlayerDistance())
 	{
 		Exit(fighter);
-		fighter.SetCurrentState(new GroundJumpFighterState());
+		fighter.SetCurrentState(new BreathFighterState());
 		return;
 	}
 	else if (fighter.GetDistanceTo(fighter.fighterManager->playerFighter) > fighter.GetAwareOfPlayerDistance())
@@ -42,15 +42,23 @@ void FleeFighterState::Update(ABaseFighterCharacter& fighter, float DeltaTime)
 
 	if (fighter.fighterManager->playerFighter->GetActorLocation().X < fighter.GetActorLocation().X) // Player is on the Left
 	{
-		fighter.SetIsFacingRight(true);
+		/*fighter.SetIsFacingRight(true);
 		SetMovement(FVector(1.0f, 0.0f, 0.0f));
-		fighter.SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
-	}
-	else if (fighter.fighterManager->playerFighter->GetActorLocation().X > fighter.GetActorLocation().X) // Player is on the Right
-	{
+		fighter.SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));*/
+
 		fighter.SetIsFacingRight(false);
 		SetMovement(FVector(-1.0f, 0.0f, 0.0f));
 		fighter.SetActorRotation(FRotator(0.0f, 180.0f, 0.0f));
+	}
+	else if (fighter.fighterManager->playerFighter->GetActorLocation().X > fighter.GetActorLocation().X) // Player is on the Right
+	{
+		/*fighter.SetIsFacingRight(false);
+		SetMovement(FVector(-1.0f, 0.0f, 0.0f));
+		fighter.SetActorRotation(FRotator(0.0f, 180.0f, 0.0f));*/
+
+		fighter.SetIsFacingRight(true);
+		SetMovement(FVector(1.0f, 0.0f, 0.0f));
+		fighter.SetActorRotation(FRotator(0.0f, 0.0f, 0.0f));
 	}
 
 	FVector fighterMoveDirection = currentFighterMovement.GetSafeNormal();
