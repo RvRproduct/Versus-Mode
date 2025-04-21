@@ -136,7 +136,6 @@ void ABaseFighterCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInp
 		EnhancedInputComponent->BindAction(SlideAction, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterSlide);
 
 		EnhancedInputComponent->BindAction(SuperSlideAction, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterSuperSlide);
-		EnhancedInputComponent->BindAction(SwitchLevelAction, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterSwitchLevel);
 
 		EnhancedInputComponent->BindAction(NormalAction, ETriggerEvent::Started, this, &ABaseFighterCharacter::FighterNormalPressed);
 		EnhancedInputComponent->BindAction(NormalAction, ETriggerEvent::Completed, this, &ABaseFighterCharacter::FighterNormalReleased);
@@ -367,22 +366,6 @@ void ABaseFighterCharacter::FighterNormalReleased(const FInputActionInstance& In
 	isNormal = false;
 }
 
-void ABaseFighterCharacter::FighterSwitchLevel(const FInputActionValue& Value)
-{
-	if (fighterType != FighterTypes::Playable) { return; }
-
-	FString LevelName = GetWorld()->GetMapName();
-	FString CleanLevelName = LevelName.RightChop(GetWorld()->StreamingLevelsPrefix.Len()); // Remove prefix
-
-	if (CleanLevelName == TEXT("MapOne"))
-	{
-		UGameplayStatics::OpenLevel(GetWorld(), FName(TEXT("MapTwo")));
-	}
-	else
-	{
-		UGameplayStatics::OpenLevel(GetWorld(), FName(TEXT("MapOne")));
-	}
-}
 
 void ABaseFighterCharacter::CheckIsOnGround(ABaseFighterCharacter* fighter)
 {

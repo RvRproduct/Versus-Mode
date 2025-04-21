@@ -109,8 +109,6 @@ public:
 	void FighterNormalPressed(const FInputActionInstance& Instance);
 	void FighterNormalReleased(const FInputActionInstance& Instance);
 
-	void FighterSwitchLevel(const FInputActionValue& Value);
-
 	void CheckIfNoMovementKey();
 	void CheckIsOnGround(ABaseFighterCharacter* fighter);
 
